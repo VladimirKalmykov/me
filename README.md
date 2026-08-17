@@ -19,6 +19,8 @@ node scripts/to-pdf.mjs resume-ru.pdf /
 node scripts/to-pdf.mjs resume-en.pdf /en/
 ```
 
+На GitHub то же самое делает workflow `.github/workflows/pdf.yml`: при пуше, если изменились `index.html` или `en/index.html`, он пересобирает PDF и коммитит их обратно в ту же ветку. Запустить вручную можно из Actions → **Generate resume PDFs**.
+
 Нужен установленный Chrome или Edge. Если браузер стоит в нестандартном месте:
 
 ```bash

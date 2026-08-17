@@ -1,0 +1,48 @@
+name: Generate resume PDFs
+
+on:
+  push:
+    paths:
+      - index.html
+      - en/index.html
+  workflow_dispatch:
+
+concurrency:
+  group: pdf-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pdf:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Install Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v2
+
+      - name: Build PDFs
+        env:
+          BROWSER_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          node scripts/to-pdf.mjs resume-ru.pdf /
+          node scripts/to-pdf.mjs resume-en.pdf /en/
+
+      - name: Commit PDFs if they changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resume-ru.pdf resume-en.pdf
+          if git diff --staged --quiet; then
+            echo "PDFs unchanged"
+            exit 0
+          fi
+          git commit -m "Update resume PDFs"
+          git push

@@ -99,6 +99,10 @@ const url = `http://127.0.0.1:${port}${pagePath}`;
 
 if (fs.existsSync(outFile)) fs.unlinkSync(outFile);
 
+const ciFlags = process.env.CI
+  ? ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"]
+  : [];
+
 try {
   await run(browser, [
     "--headless=new",
@@ -109,6 +113,7 @@ try {
     "--no-pdf-header-footer",
     "--run-all-compositor-stages-before-draw",
     "--virtual-time-budget=8000",
+    ...ciFlags,
     `--print-to-pdf=${outFile}`,
     url,
   ]);
