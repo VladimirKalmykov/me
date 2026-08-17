@@ -48,11 +48,14 @@ function findBrowser() {
 function startServer() {
   const server = http.createServer((req, res) => {
     const urlPath = decodeURIComponent((req.url || "/").split("?")[0]);
-    const relative = urlPath === "/" ? "index.html" : urlPath.replace(/^\/+/, "");
-    const file = path.normalize(path.join(root, relative));
+    const relative = urlPath.replace(/^\/+/, "") || "index.html";
+    let file = path.normalize(path.join(root, relative));
     if (!file.startsWith(root)) {
       res.writeHead(403).end();
       return;
+    }
+    if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+      file = path.join(file, "index.html");
     }
     fs.readFile(file, (err, data) => {
       if (err) {
