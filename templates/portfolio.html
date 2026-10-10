@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080d">
+  <link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml">
+  <meta name="description" content="{{description}}">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="{{ogLocale}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:image" content="{{root}}assets/avatar.webp">
+  <title>{{title}}</title>
+  <link rel="alternate" hreflang="ru" href="{{ruHref}}">
+  <link rel="alternate" hreflang="en" href="{{enHref}}">
+  <link rel="preload" href="{{root}}assets/fonts/Geologica-variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="{{root}}css/portfolio-tokens.css">
+  <link rel="stylesheet" href="{{root}}css/portfolio.css">
+  <script src="{{root}}vendor/gsap-3.15.0.min.js" defer></script>
+  <script src="{{root}}js/portfolio.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#expertise">{{t002}}</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="{{t128}}">{{t003}}<span class="brand-cursor" aria-hidden="true"></span></a>
+    <span class="topbar-context">{{t004}}</span>
+    <a class="topbar-contact" href="https://t.me/xperier">{{t005}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+    <a class="topbar-language" href="{{languageHref}}" lang="{{otherLang}}" hreflang="{{otherLang}}" aria-label="{{languageLabel}}">{{otherLangUpper}}</a>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="hero-role">{{profileRole}}</p>
+          <h1 id="hero-title">{{t007}}<br>{{t008}}<span class="period">.</span></h1>
+          <p class="hero-thesis">{{profileThesis}}</p>
+          <div class="hero-links">
+            <a href="https://t.me/xperier">Telegram <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            <a href="mailto:vladimirkalmykov16@yandex.ru">{{t010}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            <a href="https://github.com/VladimirKalmykov">GitHub <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+          </div>
+          <div class="hero-pdfs" aria-label="{{t129}}">
+            <span>{{t011}}</span>
+            {{pdfLinks}}
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="{{root}}assets/avatar.webp" alt="{{t130}}" width="800" height="1066" fetchpriority="high">
+          <figcaption>{{t012}}</figcaption>
+        </figure>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-trace" aria-hidden="true"><svg class="hero-ticks" viewBox="0 0 1180 18" preserveAspectRatio="none"><path d="M90 18V10 M210 18V10 M330 18V10 M450 18V10 M570 18V10 M690 18V10 M810 18V10 M930 18V10 M1050 18V10 M1170 18V10"/></svg><span class="hero-trace-signal"></span></div>
+        <p>{{t013}} <span aria-hidden="true">/</span> {{t014}}</p>
+        <a href="#expertise">{{t015}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v15m-6-6 6 6 6-6"/></svg></a>
+      </div>
+    </section>
+
+    <nav class="profile-nav" aria-label="{{profileNavLabel}}">{{profileNav}}</nav>
+
+    <section class="skills" id="expertise" aria-labelledby="expertise-title">
+      <div class="skills-layout">
+        <aside class="skills-nav" aria-label="{{t131}}">
+          <p class="skills-nav-title"><a href="#skills-overview" data-skill-target="skills-overview">{{t016}}</a></p>
+          <nav class="skills-links" aria-label="{{t132}}">
+            <a href="#skill-frontend" data-skill-target="skill-frontend">Frontend</a>
+            <a href="#skill-backend" data-skill-target="skill-backend">Backend</a>
+            <a href="#skill-devops" data-skill-target="skill-devops">{{t017}}</a>
+            <a href="#skill-ai" data-skill-target="skill-ai">AI</a>
+            <a href="#skill-design" data-skill-target="skill-design">UI/UX</a>
+          </nav>
+        </aside>
+
+        <div class="skills-scenes">
+          <article class="skill-scene skill-intro is-active" id="skills-overview" data-skill-scene>
+            <div class="skill-content">
+              <h2 id="expertise-title">{{t018}}<br>{{t019}}<span class="period">.</span></h2>
+              <p class="skill-intro-lead">{{profileLead}}</p>
+              <p>{{profileBody}}</p>
+              <div class="skill-responsibilities" aria-label="{{t133}}">
+                <span>{{t022}}</span>
+                <span>{{t023}}</span>
+                <span>{{t024}}</span>
+                <span>{{t025}}</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-frontend" data-skill-scene>
+            <div class="skill-content">
+              <h3>Frontend</h3>
+              <p class="skill-headline">{{t026}}</p>
+              <dl class="skill-stack">
+                <div><dt>{{t027}}</dt><dd>JavaScript / TypeScript</dd></div>
+                <div><dt>{{t028}}</dt><dd>React / Next.js 15 / SSR / SPA</dd></div>
+                <div><dt>{{t029}}</dt><dd>{{t030}}</dd></div>
+                <div><dt>{{t031}}</dt><dd>{{t032}}</dd></div>
+                <div><dt>{{t033}}</dt><dd>REST API / SSE</dd></div>
+              </dl>
+              <p class="skill-detail">{{t034}}</p>
+              <a class="skill-proof" href="#yougile">{{t035}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-backend" data-skill-scene>
+            <div class="skill-content">
+              <h3>Backend</h3>
+              <p class="skill-headline">{{t036}}</p>
+              <dl class="skill-stack">
+                <div><dt>{{t037}}</dt><dd>Node.js / REST API / Webhooks</dd></div>
+                <div><dt>{{t038}}</dt><dd>PostgreSQL / Prisma ORM</dd></div>
+                <div><dt>{{t039}}</dt><dd>Redis / BullMQ / RabbitMQ</dd></div>
+                <div><dt>{{t040}}</dt><dd>{{t041}}</dd></div>
+              </dl>
+              <p class="skill-detail">{{t042}}</p>
+              <a class="skill-proof" href="#prettifai">{{t043}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-devops" data-skill-scene>
+            <div class="skill-content">
+              <h3>DevOps <span>{{t044}}</span></h3>
+              <p class="skill-headline">{{t045}}</p>
+              <dl class="skill-stack">
+                <div><dt>{{t046}}</dt><dd>Docker / Docker Compose / Linux (Ubuntu)</dd></div>
+                <div><dt>{{t047}}</dt><dd>Git / GitHub Actions / CI/CD</dd></div>
+                <div><dt>{{t048}}</dt><dd>Nginx / SSL/TLS / CDN / Cloudflare / R2</dd></div>
+                <div><dt>{{t049}}</dt><dd>Grafana / Prometheus / Loki</dd></div>
+              </dl>
+              <p class="skill-detail">{{t050}}</p>
+              <a class="skill-proof" href="#yougile">{{t051}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-ai" data-skill-scene>
+            <div class="skill-content">
+              <h3>AI</h3>
+              <p class="skill-headline">{{t052}}</p>
+              <dl class="skill-stack">
+                <div><dt>API</dt><dd>OpenAI / Gemini / Fal.ai / Runware / CometAPI</dd></div>
+                <div><dt>{{t053}}</dt><dd>Seedream / Nano Banana / GPT Image</dd></div>
+                <div><dt>{{t054}}</dt><dd>LLM / AI Agents / Model Routing / Embeddings</dd></div>
+                <div><dt>{{t055}}</dt><dd>{{t056}}</dd></div>
+              </dl>
+              <p class="skill-detail">{{t057}}</p>
+              <a class="skill-proof" href="#prettifai">{{t058}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-design" data-skill-scene>
+            <div class="skill-content">
+              <h3>UI/UX</h3>
+              <p class="skill-headline">{{t059}}</p>
+              <dl class="skill-stack">
+                <div><dt>{{t060}}</dt><dd>UI/UX Design / Design Systems</dd></div>
+                <div><dt>{{t027}}</dt><dd>{{t061}}</dd></div>
+                <div><dt>{{t054}}</dt><dd>{{t062}}</dd></div>
+              </dl>
+              <p class="skill-detail">{{t063}}</p>
+              <a class="skill-proof" href="#infotech">{{t064}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="chronology" aria-labelledby="chronology-title">
+      <div class="story-heading">
+        <h2 id="chronology-title">{{t065}}<br><span>{{t066}}</span></h2>
+      </div>
+
+      <div class="story-layout">
+        <aside class="timeline" aria-label="{{t134}}">
+          <div class="timeline-head"><span>2026</span><span>2016</span></div>
+          <div class="timeline-track" aria-hidden="true">
+            <svg class="year-ticks" viewBox="0 0 1180 18" preserveAspectRatio="none"><path d="M90 0V7 M210 0V7 M330 0V7 M450 0V7 M570 0V7 M690 0V7 M810 0V7 M930 0V7 M1050 0V7 M1170 0V7"/></svg>
+            <span class="now-marker"></span>
+            <span class="timeline-playhead"></span>
+          </div>
+          <nav class="timeline-nav" aria-label="{{t135}}">
+            <a class="timeline-item" href="#prettifai" data-target="prettifai" data-period="{{t074}}" style="--from:0;--to:9.3"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>Prettifai</strong><small>{{t067}}</small></span><span class="timeline-item-detail">{{t068}}</span></a>
+            <a class="timeline-item" href="#yougile" data-target="yougile" data-period="2024–2025" style="--from:10.2;--to:20.3"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>YouGile</strong><small>10.2024–10.2025</small></span><span class="timeline-item-detail">{{t069}}</span></a>
+            <a class="timeline-item" href="#kaspersky" data-target="kaspersky" data-period="2023–2024" style="--from:20.3;--to:33.9"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>{{t070}}</strong><small>06.2023–10.2024</small></span><span class="timeline-item-detail">{{t071}}</span></a>
+            <a class="timeline-item" href="#smartpack" data-target="smartpack" data-period="2020–2022" style="--from:43.2;--to:63.6"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>SmartPack</strong><small>07.2020–07.2022</small></span><span class="timeline-item-detail">{{t072}}</span></a>
+            <a class="timeline-item" href="#infotech" data-target="infotech" data-period="2016–2020" style="--from:63.6;--to:100"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>Infotech</strong><small>12.2016–07.2020</small></span><span class="timeline-item-detail">{{t073}}</span></a>
+          </nav>
+        </aside>
+
+        <div class="chapters">
+          <article class="chapter" id="prettifai" data-chapter="prettifai">
+            <div class="chapter-index"><span>{{t074}}</span><span>01 / 05</span></div>
+            <h3>{{t075}}<br>{{t076}}</h3>
+            <p class="chapter-lead">{{t077}}</p>
+            <p>{{t078}}</p>
+            <div class="logic-graphic graph-graphic" role="img" aria-label="{{t136}}">
+              <span>{{t079}}</span><i></i><span>{{t080}}</span><i></i><span>{{t081}}</span><em>{{t082}}</em>
+            </div>
+            <p class="chapter-stack"><span>{{t083}}</span> {{t084}}</p>
+          </article>
+
+          <article class="chapter" id="yougile" data-chapter="yougile">
+            <div class="chapter-index"><span>2024–2025</span><span>02 / 05</span></div>
+            <h3>{{t085}}<br>{{t086}}</h3>
+            <p class="chapter-lead">{{t087}}</p>
+            <p>{{t088}}</p>
+            <div class="logic-graphic pipeline-graphic" role="img" aria-label="{{t137}}">
+              <span>{{t089}}</span><i></i><span>SDK</span><i></i><span>{{t090}}</span><i></i><span>{{t091}}</span>
+            </div>
+            <p class="chapter-stack"><span>{{t083}}</span> React, TypeScript, Rollup, PostCSS, ESM, CI</p>
+          </article>
+
+          <article class="chapter" id="kaspersky" data-chapter="kaspersky">
+            <div class="chapter-index"><span>2023–2024</span><span>03 / 05</span></div>
+            <h3>{{t092}}<br>{{t093}}</h3>
+            <p class="chapter-lead">{{t094}}</p>
+            <p>{{t095}}</p>
+            <div class="logic-graphic constraint-graphic" role="img" aria-label="{{t138}}">
+              <span>{{t096}}</span><span>{{t097}}</span><span>{{t098}}</span>
+            </div>
+            <p class="chapter-stack"><span>{{t099}}</span> {{t100}}</p>
+          </article>
+
+          <article class="chapter" id="smartpack" data-chapter="smartpack">
+            <div class="chapter-index"><span>2020–2022</span><span>04 / 05</span></div>
+            <h3>{{t101}}<br>{{t102}}</h3>
+            <p class="chapter-lead">{{t103}}</p>
+            <p>{{t104}}</p>
+            <div class="logic-graphic compression-graphic" role="img" aria-label="{{t139}}">
+              <div class="comparison"><span>{{t105}}</span><div class="comparison-rail"><i style="--size:100%"></i></div><b>{{t106}}</b></div>
+              <div class="comparison"><span>{{t107}}</span><div class="comparison-rail"><i style="--size:13%"></i></div><b>{{t108}}</b></div>
+            </div>
+            <div class="chapter-case-notes">
+              <section><h4>{{t141}}</h4><p>{{t142}}</p></section>
+              <section><h4>{{t143}}</h4><p>{{t144}}</p></section>
+            </div>
+            <p class="chapter-stack"><span>{{t109}}</span> {{t110}}</p>
+          </article>
+
+          <article class="chapter" id="infotech" data-chapter="infotech">
+            <div class="chapter-index"><span>2016–2020</span><span>05 / 05</span></div>
+            <h3>{{t111}}<br>{{t112}}</h3>
+            <p class="chapter-lead">{{t113}}</p>
+            <p>{{t114}}</p>
+            <div class="logic-graphic team-graphic" role="img" aria-label="{{t140}}">
+              <div class="logic-source">{{t115}} <span>{{t116}}</span></div>
+              <div class="team-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="team-nodes"><span>{{t117}}</span><span>{{t118}}</span><span>{{t119}}</span></div>
+            </div>
+            <p class="chapter-stack"><span>{{t083}}</span> {{t120}}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p>{{t121}}</p>
+      <h2 id="closing-title">{{t122}}</h2>
+      <a href="https://t.me/xperier">{{t123}} <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+    </section>
+  </main>
+  <footer class="footer"><span>{{t124}}</span><span>{{t125}}</span><a href="#top">{{t126}}</a></footer>
+</body>
+</html>
+

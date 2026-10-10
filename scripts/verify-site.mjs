@@ -1,0 +1,54 @@
+import { readFile, stat } from 'node:fs/promises';
+import { resolve, join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const project = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const dist = join(project, 'dist');
+const routes = ['', 'en', 'frontend', 'en/frontend', 'fullstack', 'en/fullstack'];
+const external = /^(?:https?:|mailto:|tel:|data:)/i;
+
+async function exists(path) {
+  try { await stat(path); return true; } catch { return false; }
+}
+
+for (const route of routes) {
+  const path = join(dist, route, 'index.html');
+  const html = await readFile(path, 'utf8');
+  const lang = route.startsWith('en') ? 'en' : 'ru';
+  if (!html.startsWith('<!doctype html>')) throw new Error(`Missing doctype: ${route}`);
+  if (!html.includes(`<html lang="${lang}">`)) throw new Error(`Wrong language: ${route}`);
+  if (/\{\{[^}]+\}\}/.test(html)) throw new Error(`Unresolved variable: ${route}`);
+  if (lang === 'en' && /[А-Яа-яЁё]/.test(html)) throw new Error(`Russian copy in ${route}`);
+  if ((html.match(/data-skill-scene/g) || []).length !== 6) throw new Error(`Missing expertise sections: ${route}`);
+  if ((html.match(/data-chapter=/g) || []).length !== 5) throw new Error(`Missing chronology chapters: ${route}`);
+  if (!html.includes('href="https://t.me/xperier"') || !html.includes('mailto:vladimirkalmykov16@yandex.ru')) throw new Error(`Missing contact: ${route}`);
+  if (!html.includes('AST') || !html.includes('Data Matrix')) throw new Error(`Missing SmartPack case detail: ${route}`);
+
+  for (const [, address] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
+    if (external.test(address)) continue;
+    if (address.startsWith('#')) {
+      if (!html.includes(`id="${address.slice(1)}"`)) throw new Error(`Broken anchor ${address} in ${route}`);
+      continue;
+    }
+    const clean = address.split(/[?#]/, 1)[0];
+    const target = resolve(dirname(path), clean);
+    if (!target.startsWith(dist)) throw new Error(`Link escapes dist: ${address} in ${route}`);
+    const candidate = clean.endsWith('/') ? join(target, 'index.html') : target;
+    if (!await exists(candidate)) throw new Error(`Missing link ${address} in ${route}`);
+  }
+  const role = route.includes('frontend') ? 'frontend' : route.includes('fullstack') ? 'fullstack' : null;
+  for (const pdf of role ? [role] : ['frontend', 'fullstack']) {
+    if (!html.includes(`pdf/${pdf}-${lang}.pdf`)) throw new Error(`Missing PDF ${pdf}/${lang} in ${route}`);
+  }
+  process.stdout.write(`Verified /${route ? route + '/' : ''}\n`);
+}
+
+for (const lang of ['ru', 'en']) {
+  const alias = await readFile(join(dist, `resume-${lang}.pdf`));
+  const frontend = await readFile(join(dist, 'pdf', `frontend-${lang}.pdf`));
+  if (!alias.equals(frontend)) throw new Error(`Legacy PDF alias differs: ${lang}`);
+}
+
+for (const privatePath of ['resume.txt', 'PRODUCT.md', 'DESIGN.md', 'templates', 'content', 'prototype']) {
+  if (await exists(join(dist, privatePath))) throw new Error(`Private source published: ${privatePath}`);
+}

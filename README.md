@@ -1,59 +1,34 @@
-# Резюме — Владимир Калмыков
+# Инженерное портфолио Владимира Калмыкова
 
-Статическая страница для GitHub Pages. Русская версия в корне, английская в `en/`.
+Шесть статических страниц: общее портфолио, frontend и fullstack на русском и английском. Исходная разметка одна — `templates/portfolio.html`; тексты лежат в `content/ru.json`, `content/en.json` и `content/profiles.mjs`. Сборка создаёт самостоятельный HTML для каждого маршрута. Содержание, контакты и ссылки доступны без JavaScript.
 
-## Локальный просмотр
+## Сборка и просмотр
 
-Откройте `index.html` в браузере или поднимите любой статический сервер из корня репозитория:
-
-```bash
-npx --yes serve .
+```powershell
+python -m pip install 'reportlab>=4,<5' 'pypdf>=5,<7'
+python scripts/build-portfolio-pdfs.py
+python scripts/verify-portfolio-pdfs.py
+node scripts/build-site.mjs
+node scripts/verify-site.mjs
+python -m http.server 8765 --bind 127.0.0.1
 ```
+
+Откройте `http://127.0.0.1:8765/dist/` для проверки точного публичного каталога. Сборка также обновляет страницы в корне репозитория, поэтому локальный `/` показывает ту же главную страницу. Перед повторной публикацией запускайте сборку заново.
+
+| Профиль | Русский | English |
+| --- | --- | --- |
+| Общее портфолио | `/` | `/en/` |
+| Frontend Tech Lead | `/frontend/` | `/en/frontend/` |
+| Senior Fullstack | `/fullstack/` | `/en/fullstack/` |
+
+На GitHub Pages репозиторий `me` размещает эти пути под `/me/`. Все ссылки и ресурсы относительные, поэтому сайт работает и локально, и под префиксом Pages.
 
 ## PDF
 
-Страница печатается в A4. Собрать файл можно скриптом — он поднимает локальный сервер и прогоняет страницу через Chrome или Edge:
+Четыре редакторских PDF собираются из `scripts/build-portfolio-pdfs.py`: frontend и fullstack на двух языках. Это отдельные двухстраничные документы для чтения и печати, не снимки сайта. Сборка сайта копирует их в `dist/pdf/`. Старые адреса `resume-ru.pdf` и `resume-en.pdf` в публичном каталоге ведут к frontend-резюме соответствующего языка.
 
-```bash
-node scripts/to-pdf.mjs resume-ru.pdf /
-node scripts/to-pdf.mjs resume-en.pdf /en/
-```
+## Публикация
 
-На GitHub то же самое делает workflow `.github/workflows/pdf.yml`: при пуше, если изменились `index.html` или `en/index.html`, он пересобирает PDF и коммитит их обратно в ту же ветку. Запустить вручную можно из Actions → **Generate resume PDFs**.
+`.github/workflows/site.yml` проверяет сайт при push и pull request, сохраняя готовый каталог как артефакт. Публикация отключена при обычном push. После согласования результата вручную запустите **Build portfolio site** через Actions с параметром **publish = true**; для этого в настройках Pages источником должен быть **GitHub Actions**. В `dist/` попадают только готовые страницы, публичные шрифты, фото, CSS/JS, GSAP и PDF. `resume.txt`, внутренние документы и прототип не публикуются.
 
-Нужен установленный Chrome или Edge. Если браузер стоит в нестандартном месте:
-
-```bash
-set BROWSER_PATH=C:\path\to\chrome.exe
-node scripts/to-pdf.mjs
-```
-
-## Публикация на GitHub Pages
-
-1. Создайте репозиторий на GitHub и запушьте эту ветку (`main`).
-2. Settings → Pages → **Deploy from a branch**.
-3. Branch: `main`, folder: `/ (root)`.
-4. Сохраните. Через минуту страница будет по адресу:
-
-- `https://<user>.github.io/<repo>/` — если репозиторий обычный
-- `https://<user>.github.io/` — если репозиторий называется `<user>.github.io`
-
-Файл `.nojekyll` отключает обработку Jekyll, чтобы Pages отдавал HTML как есть.
-
-## Что внутри
-
-| Файл | Назначение |
-| --- | --- |
-| `index.html` | Русская страница |
-| `en/index.html` | Английская страница |
-| `css/styles.css` | Сетка, темы, мобильная вёрстка, печать |
-| `js/theme.js` | Системная тема + ручной переключатель |
-| `assets/avatar.webp` | Фото, сжатое из `avatar.png` |
-| `scripts/to-pdf.mjs` | Сборка PDF через Chrome/Edge |
-| `resume-ru.pdf` / `resume-en.pdf` | Готовые PDF |
-
-Тема берётся из системных настроек, затем запоминается в `localStorage` после ручного переключения.
-
-Исходники `avatar.png` и `resume.txt` на страницу не попадают.
-
-Переключатель языка и ссылка на PDF — в правом верхнем углу фото.
+`prototype/chronology/` остаётся исследовательской точкой просмотра, но использует основные `css/portfolio.css` и `js/portfolio.js`. Изменять рабочую версию следует в шаблоне, данных и основных ресурсах, затем запускать сборку.

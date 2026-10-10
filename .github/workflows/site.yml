@@ -1,0 +1,74 @@
+name: Build portfolio site
+
+on:
+  push:
+    paths:
+      - 'templates/**'
+      - 'content/**'
+      - 'css/portfolio.css'
+      - 'css/portfolio-tokens.css'
+      - 'js/portfolio.js'
+      - 'assets/**'
+      - 'vendor/**'
+      - 'favicon.svg'
+      - 'scripts/build-site.mjs'
+      - 'scripts/verify-site.mjs'
+      - 'scripts/build-portfolio-pdfs.py'
+      - 'scripts/verify-portfolio-pdfs.py'
+      - '.github/workflows/site.yml'
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Publish the verified site to GitHub Pages'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build editorial PDFs
+        run: |
+          python -m pip install 'reportlab>=4,<5' 'pypdf>=5,<7'
+          python scripts/build-portfolio-pdfs.py
+          python scripts/verify-portfolio-pdfs.py
+      - name: Build and verify static site
+        run: |
+          node scripts/build-site.mjs
+          node scripts/verify-site.mjs
+      - name: Save reviewable site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-site
+          path: dist/
+      - name: Prepare Pages artifact
+        if: github.event_name == 'workflow_dispatch' && inputs.publish
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+
+  deploy:
+    if: github.event_name == 'workflow_dispatch' && inputs.publish
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

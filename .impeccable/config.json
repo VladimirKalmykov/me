@@ -1,0 +1,27 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "prototype/chronology/index.html"
+        ],
+        "createdAt": "2026-10-10T01:48:11.401Z",
+        "reason": "False positive: measured .closing horizontal padding is 60.48px at 1440px and 20px at 390px and 320px; every child has at least the same inset."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "templates/portfolio.html"
+        ],
+        "createdAt": "2026-10-10T20:32:34.606Z",
+        "reason": "Agent: shared template has unresolved root stylesheet variable; built page resolves CSS and detector finds no flat hierarchy"
+      }
+    ]
+  }
+}

@@ -1,468 +1,267 @@
 <!doctype html>
+<!-- Generated from templates/portfolio.html; edit the template and content files. -->
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vladimir Kalmykov — Senior+ Fullstack, TechLead</title>
-    <meta
-      name="description"
-      content="Full-stack developer, architect and lead. JavaScript, TypeScript, React, Node.js. Moscow, remote."
-    />
-    <meta property="og:type" content="profile" />
-    <meta property="og:locale" content="en_US" />
-    <meta
-      property="og:title"
-      content="Vladimir Kalmykov — Senior+ Fullstack, TechLead"
-    />
-    <meta
-      property="og:description"
-      content="Full-stack developer, architect and lead. Moscow, remote."
-    />
-    <meta property="og:image" content="../assets/avatar.webp" />
-    <meta name="color-scheme" content="dark light" />
-    <link rel="icon" href="../assets/avatar.webp" type="image/webp" />
-    <link rel="alternate" hreflang="ru" href="../" />
-    <link rel="alternate" hreflang="en" href="./" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
-          document.documentElement.setAttribute("data-theme", theme);
-          document.documentElement.style.colorScheme = theme;
-        } catch (e) {
-          document.documentElement.setAttribute("data-theme", "dark");
-        }
-      })();
-    </script>
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body>
-    <div class="page">
-      <div class="rail">
-        <header class="hero">
-          <figure class="portrait">
-            <img
-              src="../assets/avatar.webp"
-              alt="Vladimir Kalmykov"
-              width="800"
-              height="1066"
-            />
-            <div class="photo-actions">
-              <a
-                class="photo-action"
-                href="../"
-                hreflang="ru"
-                lang="ru"
-                aria-label="Русская версия"
-                >RU</a
-              >
-              <a
-                class="photo-action"
-                href="../resume-en.pdf"
-                download="kalmykov-resume-en.pdf"
-                aria-label="Download PDF"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M12 3.2a.9.9 0 0 1 .9.9v8.43l2.36-2.36a.9.9 0 1 1 1.28 1.28l-3.9 3.9a.9.9 0 0 1-1.28 0l-3.9-3.9a.9.9 0 0 1 1.28-1.28L11.1 12.53V4.1a.9.9 0 0 1 .9-.9ZM5.4 16.8a.9.9 0 0 1 .9.9v1.2h11.4v-1.2a.9.9 0 1 1 1.8 0v2.1a.9.9 0 0 1-.9.9H5.4a.9.9 0 0 1-.9-.9v-2.1a.9.9 0 0 1 .9-.9Z"
-                  />
-                </svg>
-              </a>
-              <button
-                class="theme-toggle"
-                id="theme-toggle"
-                type="button"
-                aria-pressed="false"
-                aria-label="Toggle theme"
-              >
-                <span class="theme-toggle-icon" aria-hidden="true">
-                  <svg class="icon-moon" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M16.5 13.2A7.2 7.2 0 0 1 10.8 4a.6.6 0 0 0-.72-.7A8.4 8.4 0 1 0 20.7 13.9a.6.6 0 0 0-.7-.72 7.16 7.16 0 0 1-3.5.02Z"
-                    />
-                  </svg>
-                  <svg class="icon-sun" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M12 6.6A5.4 5.4 0 1 0 17.4 12 5.4 5.4 0 0 0 12 6.6Zm0-4.2a.9.9 0 0 1 .9.9v1.2a.9.9 0 1 1-1.8 0V3.3a.9.9 0 0 1 .9-.9Zm0 16.2a.9.9 0 0 1 .9.9v1.2a.9.9 0 1 1-1.8 0v-1.2a.9.9 0 0 1 .9-.9Zm9.3-7.2a.9.9 0 0 1-.9.9h-1.2a.9.9 0 1 1 0-1.8h1.2a.9.9 0 0 1 .9.9ZM5.7 12a.9.9 0 0 1-.9.9H3.6a.9.9 0 1 1 0-1.8h1.2a.9.9 0 0 1 .9.9Zm12.4-6.36a.9.9 0 0 1 0 1.27l-.85.85a.9.9 0 1 1-1.27-1.27l.85-.85a.9.9 0 0 1 1.27 0ZM8.02 16.7a.9.9 0 0 1 0 1.27l-.85.85a.9.9 0 1 1-1.27-1.27l.85-.85a.9.9 0 0 1 1.27 0Zm9.96 2.12-.85-.85a.9.9 0 1 1 1.27-1.27l.85.85a.9.9 0 1 1-1.27 1.27ZM6.9 8.76l-.85-.85A.9.9 0 1 1 7.32 6.64l.85.85A.9.9 0 1 1 6.9 8.76Z"
-                    />
-                  </svg>
-                </span>
-              </button>
-            </div>
-            <figcaption>
-              <p class="kicker">Resume</p>
-              <h1>Vladimir<br />Kalmykov</h1>
-            </figcaption>
-          </figure>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05080d">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Senior/Lead Fullstack Developer specializing in frontend architecture, product engineering, teams, UI/UX and AI integration.">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Vladimir Kalmykov — engineering portfolio">
+  <meta property="og:description" content="Senior/Lead Fullstack Developer specializing in frontend architecture, product engineering, teams, UI/UX and AI integration.">
+  <meta property="og:image" content="../assets/avatar.webp">
+  <title>Vladimir Kalmykov — engineering portfolio</title>
+  <link rel="alternate" hreflang="ru" href="../">
+  <link rel="alternate" hreflang="en" href="../en/">
+  <link rel="preload" href="../assets/fonts/Geologica-variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="../css/portfolio-tokens.css">
+  <link rel="stylesheet" href="../css/portfolio.css">
+  <script src="../vendor/gsap-3.15.0.min.js" defer></script>
+  <script src="../js/portfolio.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#expertise">Skip to expertise</a>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Vladimir Kalmykov, back to top">VK<span class="brand-cursor" aria-hidden="true"></span></a>
+    <span class="topbar-context">Portfolio / engineering path</span>
+    <a class="topbar-contact" href="https://t.me/xperier">Contact <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+    <a class="topbar-language" href="../" lang="ru" hreflang="ru" aria-label="Switch to Russian">RU</a>
+  </header>
 
-          <div class="identity">
-            <p class="role">Senior+ Fullstack · TechLead</p>
-            <p class="place">Moscow · remote</p>
-            <a class="telegram" href="https://t.me/xperier" rel="me">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  fill="currentColor"
-                  d="M21.5 3.3 2.8 10.5c-1.3.5-1.2 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.7.4.9 1 .9.3 0 .5-.1.7-.4l2.6-2.5 5.1 3.7c.9.5 1.6.2 1.8-.9l3.3-15.5c.3-1.4-.5-2-1.6-1.6Zm-3.1 4.6-8.8 8-.4 3.7-1.3-4.3 10.5-7.4Z"
-                />
-              </svg>
-              Telegram @xperier
-            </a>
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-main">
+        <div class="hero-copy">
+          <p class="hero-role">Senior / Lead Fullstack Developer · Frontend architecture</p>
+          <h1 id="hero-title">Vladimir<br>Kalmykov<span class="period">.</span></h1>
+          <p class="hero-thesis">I build architecture and tools that help teams ship products faster.</p>
+          <div class="hero-links">
+            <a href="https://t.me/xperier">Telegram <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            <a href="mailto:vladimirkalmykov16@yandex.ru">Email <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            <a href="https://github.com/VladimirKalmykov">GitHub <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
           </div>
-        </header>
+          <div class="hero-pdfs" aria-label="Download a resume">
+            <span>RESUMES / PDF</span>
+            <a href="../pdf/frontend-en.pdf" download="Vladimir-Kalmykov-Frontend-en.pdf">Frontend Tech Lead <span aria-hidden="true">↓</span></a><a href="../pdf/fullstack-en.pdf" download="Vladimir-Kalmykov-Fullstack-en.pdf">Fullstack Developer <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="../assets/avatar.webp" alt="Portrait of Vladimir Kalmykov" width="800" height="1066" fetchpriority="high">
+          <figcaption>Vladimir / portrait</figcaption>
+        </figure>
+      </div>
+      <div class="hero-bottom">
+        <div class="hero-trace" aria-hidden="true"><svg class="hero-ticks" viewBox="0 0 1180 18" preserveAspectRatio="none"><path d="M90 18V10 M210 18V10 M330 18V10 M450 18V10 M570 18V10 M690 18V10 M810 18V10 M930 18V10 M1050 18V10 M1170 18V10"/></svg><span class="hero-trace-signal"></span></div>
+        <p>16 years of commercial development <span aria-hidden="true">/</span> since 2010</p>
+        <a href="#expertise">Stack and expertise <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v15m-6-6 6 6 6-6"/></svg></a>
+      </div>
+    </section>
 
-        <aside class="meta">
-          <section class="block">
-            <h2>Skills</h2>
-            <div class="skill-group">
-              <h3>Frontend</h3>
-              <ul class="chips">
-                <li>JavaScript</li>
-                <li>TypeScript</li>
-                <li>React</li>
-                <li>Next.js</li>
-                <li>CSS / PostCSS / Tailwind</li>
-              </ul>
-            </div>
-            <div class="skill-group">
-              <h3>Architecture</h3>
-              <ul class="chips">
-                <li>Microfrontends</li>
-                <li>BFF</li>
-                <li>Design system</li>
-                <li>UI-kit</li>
-                <li>SSR / SSG</li>
-              </ul>
-            </div>
-            <div class="skill-group">
-              <h3>Backend</h3>
-              <ul class="chips">
-                <li>Node.js</li>
-                <li>Docker</li>
-                <li>CI/CD</li>
-                <li>PostgreSQL</li>
-                <li>MongoDB</li>
-                <li>Redis</li>
-              </ul>
-            </div>
-            <div class="skill-group">
-              <h3>AI</h3>
-              <ul class="chips">
-                <li>AI agents</li>
-                <li>Cursor</li>
-                <li>AI products</li>
-                <li>Chatbots</li>
-              </ul>
-            </div>
-          </section>
+    <nav class="profile-nav" aria-label="Portfolio versions"><a href="../en/" aria-current="page">Portfolio</a><a href="../en/frontend/">Frontend</a><a href="../en/fullstack/">Fullstack</a></nav>
 
-          <section class="block">
-            <h2>Languages</h2>
-            <ul class="facts">
-              <li><span>Russian</span> native</li>
-              <li><span>English</span> B2</li>
-            </ul>
-          </section>
-
-          <section class="block">
-            <h2>Education</h2>
-            <p class="edu-title">Environmental design</p>
-            <p class="edu-place">Moscow, 2007</p>
-          </section>
+    <section class="skills" id="expertise" aria-labelledby="expertise-title">
+      <div class="skills-layout">
+        <aside class="skills-nav" aria-label="Areas of expertise">
+          <p class="skills-nav-title"><a href="#skills-overview" data-skill-target="skills-overview">Expertise</a></p>
+          <nav class="skills-links" aria-label="Expertise navigation">
+            <a href="#skill-frontend" data-skill-target="skill-frontend">Frontend</a>
+            <a href="#skill-backend" data-skill-target="skill-backend">Backend</a>
+            <a href="#skill-devops" data-skill-target="skill-devops">DevOps / infrastructure</a>
+            <a href="#skill-ai" data-skill-target="skill-ai">AI</a>
+            <a href="#skill-design" data-skill-target="skill-design">UI/UX</a>
+          </nav>
         </aside>
+
+        <div class="skills-scenes">
+          <article class="skill-scene skill-intro is-active" id="skills-overview" data-skill-scene>
+            <div class="skill-content">
+              <h2 id="expertise-title">I design the whole<br>product<span class="period">.</span></h2>
+              <p class="skill-intro-lead">Senior/Lead Fullstack Developer with deep expertise in frontend architecture, UI/UX and AI integration.</p>
+              <p>I connect interfaces, server logic, data and infrastructure. I have built product interfaces from scratch, led teams and created tools that help developers ship changes faster.</p>
+              <div class="skill-responsibilities" aria-label="Main areas of responsibility">
+                <span>Application architecture and microfrontends</span>
+                <span>Teams, standards and UI libraries</span>
+                <span>MVPs, production and delivery speed</span>
+                <span>UI/UX, design systems and SaaS products</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-frontend" data-skill-scene>
+            <div class="skill-content">
+              <h3>Frontend</h3>
+              <p class="skill-headline">Interfaces as systems built to evolve.</p>
+              <dl class="skill-stack">
+                <div><dt>Languages</dt><dd>JavaScript / TypeScript</dd></div>
+                <div><dt>Applications</dt><dd>React / Next.js 15 / SSR / SPA</dd></div>
+                <div><dt>Platform</dt><dd>Webpack / microfrontends / UI Kit</dd></div>
+                <div><dt>Interface</dt><dd>HTML5 / CSS3 / SCSS / component architecture</dd></div>
+                <div><dt>Integration</dt><dd>REST API / SSE</dd></div>
+              </dl>
+              <p class="skill-detail">20+ years of frontend experience. I own the full lifecycle of complex client applications: stack selection, architecture, UI libraries, developer tooling and business logic. I focus on performance, responsive interfaces and the quality of the user experience.</p>
+              <a class="skill-proof" href="#yougile">How this worked at YouGile <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-backend" data-skill-scene>
+            <div class="skill-content">
+              <h3>Backend</h3>
+              <p class="skill-headline">The logic and data behind the product.</p>
+              <dl class="skill-stack">
+                <div><dt>Server</dt><dd>Node.js / REST API / Webhooks</dd></div>
+                <div><dt>Data</dt><dd>PostgreSQL / Prisma ORM</dd></div>
+                <div><dt>Async work</dt><dd>Redis / BullMQ / RabbitMQ</dd></div>
+                <div><dt>Files</dt><dd>S3-compatible storage / MinIO</dd></div>
+              </dl>
+              <p class="skill-detail">I design server architecture, business logic and data models for fullstack products. My work includes service integration, task queues and several kinds of storage.</p>
+              <a class="skill-proof" href="#prettifai">How this works in Prettifai <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-devops" data-skill-scene>
+            <div class="skill-content">
+              <h3>DevOps <span>/ infrastructure</span></h3>
+              <p class="skill-headline">From commit to a reliable running system.</p>
+              <dl class="skill-stack">
+                <div><dt>Runtime</dt><dd>Docker / Docker Compose / Linux (Ubuntu)</dd></div>
+                <div><dt>Delivery</dt><dd>Git / GitHub Actions / CI/CD</dd></div>
+                <div><dt>Network</dt><dd>Nginx / SSL/TLS / CDN / Cloudflare / R2</dd></div>
+                <div><dt>Observability</dt><dd>Grafana / Prometheus / Loki</dd></div>
+              </dl>
+              <p class="skill-detail">I set up and maintain product infrastructure: containers, builds and deployment, servers, monitoring and logs. I have optimized CI/CD pipelines, including incremental builds.</p>
+              <a class="skill-proof" href="#yougile">A build change at YouGile <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-ai" data-skill-scene>
+            <div class="skill-content">
+              <h3>AI</h3>
+              <p class="skill-headline">Models inside a working product.</p>
+              <dl class="skill-stack">
+                <div><dt>API</dt><dd>OpenAI / Gemini / Fal.ai / Runware / CometAPI</dd></div>
+                <div><dt>Models</dt><dd>Seedream / Nano Banana / GPT Image</dd></div>
+                <div><dt>Systems</dt><dd>LLM / AI Agents / Model Routing / Embeddings</dd></div>
+                <div><dt>Practice</dt><dd>AI pipelines / queues / Prompt Engineering / GPU</dd></div>
+              </dl>
+              <p class="skill-detail">I use AI in development and build products with AI features. I have developed chatbots with dynamic skills, model integrations and orchestration. In Prettifai, I connect dozens of generative models to practical workflows. I have also run models locally on a GPU.</p>
+              <a class="skill-proof" href="#prettifai">Prettifai in practice <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+
+          <article class="skill-scene" id="skill-design" data-skill-scene>
+            <div class="skill-content">
+              <h3>UI/UX</h3>
+              <p class="skill-headline">Visual design and engineering are one problem.</p>
+              <dl class="skill-stack">
+                <div><dt>Design</dt><dd>UI/UX Design / Design Systems</dd></div>
+                <div><dt>Languages</dt><dd>Visual Design / composition / typography</dd></div>
+                <div><dt>Systems</dt><dd>UI Kit / component libraries</dd></div>
+              </dl>
+              <p class="skill-detail">I have formal design training and can develop a visual direction through to precise implementation. For five years I led UI library development, evaluating components from both visual and engineering perspectives.</p>
+              <a class="skill-proof" href="#infotech">A design system for three teams <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="chronology" aria-labelledby="chronology-title">
+      <div class="story-heading">
+        <h2 id="chronology-title">One axis.<br><span>Different scales of work.</span></h2>
       </div>
 
-      <main class="content">
-        <section class="block about">
-          <h2>About</h2>
-          <p>
-            Full-stack developer, architect and lead with 16+ years of
-            commercial experience. Stack — JavaScript / TypeScript, React,
-            Node.js. I work with backend, but lean frontend — and into design.
-          </p>
-          <p>
-            Dozens of projects behind me, from small sites to large b2b
-            services. I have worked on teams as an engineer and as a team / tech
-            lead, and as a solo developer and founder. I have taken on hard
-            problems that decide a project's fate: architecture at the start,
-            hiring and splitting ownership, internal and external product
-            presentations, mentoring, and weekend fire drills (the “exhibition
-            in Kazakhstan is Monday, we need a demo section by Sunday” kind).
-          </p>
-          <p>
-            Most interested in AI integrations, architecture, reusable tools and
-            components, internal engineering standards, stack choices, and
-            long-term technical planning.
-          </p>
-          <p>
-            Growing as a product engineer — working with the business directly
-            and shipping my own SaaS
-            (<a href="https://prettifai.ru" rel="noopener noreferrer"
-              >prettifai.ru</a
-            >).
-          </p>
-          <p>
-            Almost fully moved to working with AI. Strong experience both using
-            AI for development and building AI-based tools: chatbots, editors,
-            generation pipelines.
-          </p>
-        </section>
-
-        <section class="block experience">
-          <h2>Experience</h2>
-          <ol class="timeline">
-            <li class="job">
-              <div class="job-head">
-                <div>
-                  <h3>
-                    <a href="https://prettifai.ru" rel="noopener noreferrer"
-                      >Prettifai</a
-                    >
-                  </h3>
-                  <p class="job-role">Product Engineer</p>
-                </div>
-                <p class="job-when">
-                  <time datetime="2025-11">November 2025</time> — present
-                  <span>Moscow · 10 mo.</span>
-                </p>
-              </div>
-              <p class="job-lead">
-                Frontend for an AI visual generation service — images and video
-                that preserve the user's face. Built from scratch.
-              </p>
-              <ul>
-                <li>
-                  Full cycle of a React + Next.js (App Router) app: architecture,
-                  UI/UX, state, performance.
-                </li>
-                <li>
-                  Admin and CMS: generations, templates, pipelines, analytics.
-                </li>
-                <li>
-                  Multiple AI providers in the UI: dynamic forms, previews,
-                  intermediate generations, fallbacks.
-                </li>
-                <li>
-                  Client-side billing, credits and checkout that keep the
-                  editor state.
-                </li>
-                <li>
-                  SSR/SSG, code-splitting, caching, focus on Core Web Vitals.
-                </li>
-                <li>
-                  Design system and components for complex generative-content
-                  flows.
-                </li>
-              </ul>
-              <p class="job-note">
-                Built with AI agents and full control over architecture and
-                code quality.
-              </p>
-            </li>
-
-            <li class="job">
-              <div class="job-head">
-                <div>
-                  <h3>
-                    <a href="https://yougile.com" rel="noopener noreferrer"
-                      >YouGile</a
-                    >
-                  </h3>
-                  <p class="job-role">Senior Engineer</p>
-                </div>
-                <p class="job-when">
-                  <time datetime="2024-10">October 2024</time> —
-                  <time datetime="2025-10">October 2025</time>
-                  <span>Moscow · 1 yr 1 mo.</span>
-                </p>
-              </div>
-              <p class="job-lead">
-                Modern frontend architecture, AI features, and bringing AI
-                tools into the development process.
-              </p>
-              <ul>
-                <li>
-                  Introduced React, TypeScript, UIKIT, API Toolkit and a build
-                  pipeline into the microfrontend extension system: extensions
-                  grew from 3 to 23 in a year.
-                </li>
-                <li>
-                  Built most of the hardest extensions — Workflow and
-                  Timetracker.
-                </li>
-                <li>
-                  Shipped an AI chatbot on Qwen on my own Tesla A100.
-                </li>
-                <li>
-                  Started the team's move to AI tools and laid the groundwork
-                  for an AI-first approach.
-                </li>
-              </ul>
-              <p class="job-note">
-                Left on good terms to go further into AI.
-              </p>
-            </li>
-
-            <li class="job">
-              <div class="job-head">
-                <div>
-                  <h3>
-                    <a
-                      href="https://www.kaspersky.com"
-                      rel="noopener noreferrer"
-                      >Kaspersky Lab</a
-                    >
-                  </h3>
-                  <p class="job-role">Senior Engineer</p>
-                </div>
-                <p class="job-when">
-                  <time datetime="2023-06">June 2023</time> —
-                  <time datetime="2024-10">October 2024</time>
-                  <span>Moscow · 1 yr 5 mo.</span>
-                </p>
-              </div>
-              <p class="job-lead">
-                Frontend for a b2b product inside a large monolith with strict
-                security requirements. Nested VPNs, stacked RDP sessions,
-                debugging from bulky logs with no external tools.
-              </p>
-              <ul>
-                <li>
-                  Ongoing debugging and optimization of Security Center in an
-                  enterprise environment.
-                </li>
-                <li>
-                  Focus on reliability, client-side security, and UI quality.
-                </li>
-              </ul>
-              <p class="job-note">
-                Left to work freely with modern AI tools — the company banned
-                them entirely.
-              </p>
-            </li>
-
-            <li class="job">
-              <div class="job-head">
-                <div>
-                  <h3>SmartPack</h3>
-                  <p class="job-role">Head of UI Development</p>
-                </div>
-                <p class="job-when">
-                  <time datetime="2020-07">July 2020</time> —
-                  <time datetime="2022-07">July 2022</time>
-                  <span>Almaty · 2 yr 1 mo.</span>
-                </p>
-              </div>
-              <p class="job-lead">Built the frontend team from scratch.</p>
-              <ul>
-                <li>Shipped an MVP in a month that went straight into a pilot.</li>
-                <li>
-                  Designed a scalable frontend architecture for a corporate
-                  service and two industrial apps.
-                </li>
-                <li>Hired and led a team of 6.</li>
-                <li>
-                  The product became commercially successful: a billion marking
-                  codes in the first year.
-                </li>
-              </ul>
-            </li>
-
-            <li class="job">
-              <div class="job-head">
-                <div>
-                  <h3>
-                    <a href="https://infotech.group/" rel="noopener noreferrer"
-                      >Infotech Group</a
-                    >
-                  </h3>
-                  <p class="job-role">Core Team Lead</p>
-                </div>
-                <p class="job-when">
-                  <time datetime="2016-12">December 2016</time> —
-                  <time datetime="2020-07">July 2020</time>
-                  <span>Moscow · 3 yr 8 mo.</span>
-                </p>
-              </div>
-              <p class="job-lead">
-                Led the core team: design system and UI-kit, engineering
-                standards, and architecture guidelines.
-              </p>
-              <ul>
-                <li>
-                  Over three years and eight months, built shared development
-                  standards and a design system used by several teams.
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-
-        <section class="block stack">
-          <h2>Stack</h2>
-          <p class="stack-lead">What I work with and have worked with.</p>
-          <div class="stack-grid">
-            <div>
-              <h3>Client</h3>
-              <p>
-                React, Next.js (SSG/SSR/CSR), Vite, CRA, Webpack, Rollup,
-                Zustand, Context + hooks, Redux Toolkit
-              </p>
-            </div>
-            <div>
-              <h3>Server</h3>
-              <p>
-                Node.js, Express, BFF, REST, GraphQL, WS, SSE, RabbitMQ, BullMQ,
-                Redis, PostgreSQL + Prisma, MongoDB, SQLite
-              </p>
-            </div>
-            <div>
-              <h3>Delivery</h3>
-              <p>
-                Docker, Nginx, PM2, Ansible, Portainer, GitHub Actions, Jenkins,
-                Prometheus, Loki
-              </p>
-            </div>
-            <div>
-              <h3>Security and quality</h3>
-              <p>
-                OAuth2 / JWT / SSO, 2FA, CSP, CORS, XSS / CSRF, Jest, e2e,
-                Puppeteer
-              </p>
-            </div>
+      <div class="story-layout">
+        <aside class="timeline" aria-label="Career timeline navigation">
+          <div class="timeline-head"><span>2026</span><span>2016</span></div>
+          <div class="timeline-track" aria-hidden="true">
+            <svg class="year-ticks" viewBox="0 0 1180 18" preserveAspectRatio="none"><path d="M90 0V7 M210 0V7 M330 0V7 M450 0V7 M570 0V7 M690 0V7 M810 0V7 M930 0V7 M1050 0V7 M1170 0V7"/></svg>
+            <span class="now-marker"></span>
+            <span class="timeline-playhead"></span>
           </div>
-          <details class="full-stack">
-            <summary>Full list</summary>
-            <p>
-              JavaScript, TypeScript, C# (Mono), React 0.14 - 19, Context API +
-              hooks, HOCs, Redux Toolkit, Zustand, SPA, CRA, Vite, microservices
-              / microfrontends, RabbitMQ, BullMQ, Redis, ESM / CJS, BFF,
-              Webpack, Rollup, SSR / SSG (Next.js, Gatsby), Next.js, Express,
-              REST, GraphQL, WS, SSE, PWA, GitHub Actions, Jenkins, OAuth2 / JWT
-              / SSO, 2FA, Docker, Nginx, PM2, Ansible, Portainer, Prometheus,
-              Loki, Sentry, XSS / CSRF, CSP, CORS, unit tests, e2e, Jest,
-              Puppeteer, CSS / SCSS / PostCSS / Tailwind / CSS Modules /
-              CSS-in-JS (Emotion, styled-components), SQLite, MongoDB,
-              PostgreSQL (Prisma), Figma, Photoshop
-            </p>
-          </details>
-        </section>
-      </main>
-    </div>
-    <script src="../js/theme.js"></script>
-  </body>
+          <nav class="timeline-nav" aria-label="Projects over time">
+            <a class="timeline-item" href="#prettifai" data-target="prettifai" data-period="2025–present" style="--from:0;--to:9.3"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>Prettifai</strong><small>11.2025–present</small></span><span class="timeline-item-detail">Product · Next.js, Node.js, background jobs</span></a>
+            <a class="timeline-item" href="#yougile" data-target="yougile" data-period="2024–2025" style="--from:10.2;--to:20.3"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>YouGile</strong><small>10.2024–10.2025</small></span><span class="timeline-item-detail">Extension platform · React, TypeScript, SDK</span></a>
+            <a class="timeline-item" href="#kaspersky" data-target="kaspersky" data-period="2023–2024" style="--from:20.3;--to:33.9"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>Kaspersky Lab</strong><small>06.2023–10.2024</small></span><span class="timeline-item-detail">Security Center · frontend and debugging</span></a>
+            <a class="timeline-item" href="#smartpack" data-target="smartpack" data-period="2020–2022" style="--from:43.2;--to:63.6"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>SmartPack</strong><small>07.2020–07.2022</small></span><span class="timeline-item-detail">Six-person team · guide site, AST, React Native</span></a>
+            <a class="timeline-item" href="#infotech" data-target="infotech" data-period="2016–2020" style="--from:63.6;--to:100"><span class="timeline-item-bar"></span><span class="timeline-item-copy"><strong>Infotech</strong><small>12.2016–07.2020</small></span><span class="timeline-item-detail">Shared system for three teams · React, UI Kit, SDK</span></a>
+          </nav>
+        </aside>
+
+        <div class="chapters">
+          <article class="chapter" id="prettifai" data-chapter="prettifai">
+            <div class="chapter-index"><span>2025–present</span><span>01 / 05</span></div>
+            <h3>A product as one connected<br>engineering system.</h3>
+            <p class="chapter-lead">Prettifai · independent experimental product</p>
+            <p>I am building a visual workflow editor, background jobs, payments and AI-provider integrations. The code includes an execution graph, node caching and selective reruns. Development is active; I make no claim about scale or commercial success.</p>
+            <div class="logic-graphic graph-graphic" role="img" aria-label="How the editor, background jobs, results and payments connect in the product">
+              <span>Editor</span><i></i><span>Jobs</span><i></i><span>Result</span><em>Payments and state are connected to execution</em>
+            </div>
+            <p class="chapter-stack"><span>Worked with</span> React, Next.js, Node.js, PostgreSQL, queues, APIs</p>
+          </article>
+
+          <article class="chapter" id="yougile" data-chapter="yougile">
+            <div class="chapter-index"><span>2024–2025</span><span>02 / 05</span></div>
+            <h3>Complex extensions,<br>easier to ship.</h3>
+            <p class="chapter-lead">YouGile · Senior Developer</p>
+            <p>I initiated a modernization of the extension platform: React, TypeScript, the build system, SDK and incremental CI. I also worked on complex extensions, including Workflow and Timetracker. During my tenure the ecosystem grew from 3 to 23 extensions; that reflects the team and platform, not a count of my personal releases.</p>
+            <div class="logic-graphic pipeline-graphic" role="img" aria-label="Extension delivery path: typed code, SDK, build and release">
+              <span>Code</span><i></i><span>SDK</span><i></i><span>Build</span><i></i><span>Release</span>
+            </div>
+            <p class="chapter-stack"><span>Worked with</span> React, TypeScript, Rollup, PostCSS, ESM, CI</p>
+          </article>
+
+          <article class="chapter" id="kaspersky" data-chapter="kaspersky">
+            <div class="chapter-index"><span>2023–2024</span><span>03 / 05</span></div>
+            <h3>Reliability in a complex<br>enterprise environment.</h3>
+            <p class="chapter-lead">Kaspersky Lab · Senior Developer</p>
+            <p>I developed and debugged the Security Center interface under strict security constraints. The value here is not a flashy metric, but the ability to diagnose difficult issues, work through large logs and maintain interface quality in a major product.</p>
+            <div class="logic-graphic constraint-graphic" role="img" aria-label="Three aspects of the work: a large product, strict security and log analysis">
+              <span>Large product</span><span>Restricted environment</span><span>Deep debugging</span>
+            </div>
+            <p class="chapter-stack"><span>Focus</span> frontend, debugging, interface security</p>
+          </article>
+
+          <article class="chapter" id="smartpack" data-chapter="smartpack">
+            <div class="chapter-index"><span>2020–2022</span><span>04 / 05</span></div>
+            <h3>Tools become<br>team velocity.</h3>
+            <p class="chapter-lead">SmartPack · Head of UI Development</p>
+            <p>I built a team of six developers and its working platform: a UI Kit, SDK, internal registry and package releases. For the UI Kit I created a custom site with practical guides and live examples instead of Storybook. A separate AST tool helped localize three applications in about four days, versus an estimated month of manual work.</p>
+            <div class="logic-graphic compression-graphic" role="img" aria-label="Comparison of one-month manual localization estimate and about four days with the tool">
+              <div class="comparison"><span>Manual estimate</span><div class="comparison-rail"><i style="--size:100%"></i></div><b>≈ 1 month</b></div>
+              <div class="comparison"><span>With the AST tool</span><div class="comparison-rail"><i style="--size:13%"></i></div><b>≈ 4 days</b></div>
+            </div>
+            <div class="chapter-case-notes">
+              <section><h4>AST localization</h4><p>In three days I built an AST tool to extract strings and insert translations. It helped localize three applications in about four days, versus an estimated month of manual work; people reviewed the translations.</p></section>
+              <section><h4>Android for handheld terminals</h4><p>In about three weeks I built a React Native application and a Java bridge for a specific terminal with Data Matrix scanning. Suitable UI and business-logic pieces were later reused in import adapters for other platforms.</p></section>
+            </div>
+            <p class="chapter-stack"><span>Approach and stack</span> React, UI Kit, custom documentation site, SDK packages, AST, React Native, Java, Webpack/Babel plugins</p>
+          </article>
+
+          <article class="chapter" id="infotech" data-chapter="infotech">
+            <div class="chapter-index"><span>2016–2020</span><span>05 / 05</span></div>
+            <h3>From separate interfaces<br>to a shared system.</h3>
+            <p class="chapter-lead">Infotech · Core Team Lead</p>
+            <p>Standards, a UI Kit, SDK and documentation became a shared foundation for three product teams. Instead of rebuilding similar solutions, the teams had a consistent component language and architecture.</p>
+            <div class="logic-graphic team-graphic" role="img" aria-label="One shared system supports three product teams">
+              <div class="logic-source">Design system <span>UI Kit / SDK / guidelines</span></div>
+              <div class="team-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="team-nodes"><span>Team 1</span><span>Team 2</span><span>Team 3</span></div>
+            </div>
+            <p class="chapter-stack"><span>Worked with</span> React, JavaScript, UI Kit, SDK, architecture standards</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <p>Commercial development since 2010 · 16 years</p>
+      <h2 id="closing-title">If you need someone who connects architecture, a team and a working product, let&#39;s talk.</h2>
+      <a href="https://t.me/xperier">Message me on Telegram <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
+    </section>
+  </main>
+  <footer class="footer"><span>Vladimir Kalmykov</span><span>Engineering portfolio · 2026</span><a href="#top">Back to top</a></footer>
+</body>
 </html>
+

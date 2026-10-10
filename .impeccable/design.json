@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T02:22:57.6408468Z",
+  "title": "Design System: Ось решений",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Чёрное поле",
+        "canonical": "#05080d"
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Поле схемы",
+        "canonical": "#0b121a"
+      },
+      "signal": {
+        "role": "primary",
+        "displayName": "Активный сигнал",
+        "canonical": "#79e1e4"
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Основной текст",
+        "canonical": "#edf5f8"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Вторичный текст",
+        "canonical": "#adbfca"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Имя",
+        "purpose": "Первый кадр; ось SHRP усиливает геометрию букв."
+      },
+      "headline": {
+        "displayName": "Тезис главы",
+        "purpose": "Инженерная мысль каждой сцены."
+      },
+      "body": {
+        "displayName": "Объяснение",
+        "purpose": "Спокойное чтение фактов и ограничений."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "timeline-change",
+        "value": "700ms cubic-bezier(.18, .78, .25, 1)",
+        "purpose": "Перемещение указателя при смене активного периода; отключается reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "mobile",
+        "value": "680px"
+      },
+      {
+        "name": "small-mobile",
+        "value": "430px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Timeline link",
+      "kind": "nav",
+      "refersTo": "timeline-link",
+      "description": "Календарный период и переход к главе.",
+      "html": "<a class=\"timeline-link\" href=\"#period\">YouGile <small>10.2024—10.2025</small></a>",
+      "css": ".timeline-link{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0 .75rem;background:#05080d;color:#adbfca;border-bottom:1px solid #344a59;text-decoration:none;font-family:Geologica,sans-serif}.timeline-link:hover,.timeline-link:focus-visible{color:#79e1e4}.timeline-link:focus-visible{outline:2px solid #b9faff;outline-offset:5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ось решений",
+    "overview": "Тёмный интерфейс, где новейший опыт показывается первым, а реальные календарные периоды и инженерные связи управляют формой и движением.",
+    "keyCharacteristics": [
+      "Чёрное поле",
+      "Крупная кириллическая типографика",
+      "Семантический циановый сигнал",
+      "Обратная календарная шкала",
+      "Нативный скролл"
+    ],
+    "rules": [
+      {
+        "name": "Время как данные",
+        "body": "Длина полосы отражает календарный период; пробелы не заполняются.",
+        "section": "layout"
+      },
+      {
+        "name": "Движение отвечает на действие",
+        "body": "Указатель меняет положение только при смене читаемой главы.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Показывать личный вклад и ограничения",
+      "Сохранять контакты доступными сразу",
+      "Проверять мобильное чтение"
+    ],
+    "donts": [
+      "Рисовать декоративный HUD",
+      "Заменять даты выдуманными интервалами",
+      "Копировать тёмный сайт в PDF"
+    ]
+  }
+}

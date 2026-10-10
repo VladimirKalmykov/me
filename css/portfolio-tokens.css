@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Geologica';
+  src: url('../assets/fonts/Geologica-variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --ink: #05080d;
+  --field: #0b121a;
+  --line: #344a59;
+  --line-quiet: #1b303e;
+  --text: #edf5f8;
+  --muted: #adbfca;
+  --signal: #79e1e4;
+  --signal-dim: #2e777d;
+  --focus: #b9faff;
+  --font: 'Geologica', sans-serif;
+  --page-gutter: clamp(1.25rem, 4.2vw, 5.5rem);
+  --measure: 68ch;
+  --ease-out: cubic-bezier(.18, .78, .25, 1);
+}
+
+::selection { background: var(--signal); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 5px; }
