@@ -1,14 +1,14 @@
-const chapters = [...document.querySelectorAll('[data-chapter]')];
-const links = [...document.querySelectorAll('[data-target]')];
-const timeline = document.querySelector('.timeline');
-const skills = document.querySelector('.skills');
-const skillScenes = [...document.querySelectorAll('[data-skill-scene]')];
-const skillLinks = [...document.querySelectorAll('[data-skill-target]')];
+const chapters = [...document.querySelectorAll("[data-chapter]")];
+const siteLinks = [...document.querySelectorAll("[data-target]")];
+const timeline = document.querySelector(".timeline");
+const skills = document.querySelector(".skills");
+const skillScenes = [...document.querySelectorAll("[data-skill-scene]")];
+const skillLinks = [...document.querySelectorAll("[data-skill-target]")];
 
 if (skills && skillScenes.length && window.gsap) {
   const motion = window.gsap;
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const skillNav = document.querySelector('.skills-links');
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const skillNav = document.querySelector(".skills-links");
   let activeIndex = -1;
   let stepDistance = 0;
   let scrollDistance = 0;
@@ -25,20 +25,21 @@ if (skills && skillScenes.length && window.gsap) {
     const currentId = skillScenes[index].id;
     skillScenes.forEach((scene, sceneIndex) => {
       const active = sceneIndex === index;
-      scene.classList.toggle('is-active', active);
+      scene.classList.toggle("is-active", active);
       scene.inert = !active;
-      if (active) scene.removeAttribute('aria-hidden');
-      else scene.setAttribute('aria-hidden', 'true');
+      if (active) scene.removeAttribute("aria-hidden");
+      else scene.setAttribute("aria-hidden", "true");
     });
     for (const link of skillLinks) {
       const active = link.dataset.skillTarget === currentId;
-      link.classList.toggle('is-active', active);
-      if (active) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
       if (active && window.innerWidth <= 680) {
         const navRect = skillNav.getBoundingClientRect();
         const linkRect = link.getBoundingClientRect();
-        skillNav.scrollLeft += linkRect.left - navRect.left - (navRect.width - linkRect.width) / 2;
+        skillNav.scrollLeft +=
+          linkRect.left - navRect.left - (navRect.width - linkRect.width) / 2;
       }
     }
   }
@@ -46,36 +47,63 @@ if (skills && skillScenes.length && window.gsap) {
   function buildTimeline() {
     sceneTimeline?.kill();
     motion.set(skillScenes, { autoAlpha: 0, yPercent: 100 });
-    skillScenes.forEach((scene, index) => motion.set(scene, { zIndex: index + 1 }));
-    motion.set(skillScenes.map((scene) => scene.querySelector('.skill-content')), { opacity: 0, x: 120 });
+    skillScenes.forEach((scene, index) =>
+      motion.set(scene, { zIndex: index + 1 }),
+    );
+    motion.set(
+      skillScenes.map((scene) => scene.querySelector(".skill-content")),
+      { opacity: 0, x: 120 },
+    );
     motion.set(skillScenes[0], { autoAlpha: 1, yPercent: 0 });
-    motion.set(skillScenes[0].querySelector('.skill-content'), { opacity: 1, x: 0 });
-    sceneTimeline = reducedMotion.matches ? null : motion.timeline({ paused: true, defaults: { ease: 'none' } });
+    motion.set(skillScenes[0].querySelector(".skill-content"), {
+      opacity: 1,
+      x: 0,
+    });
+    sceneTimeline = reducedMotion.matches
+      ? null
+      : motion.timeline({ paused: true, defaults: { ease: "none" } });
     if (sceneTimeline) {
       for (let index = 0; index < skillScenes.length - 1; index++) {
         const outgoing = skillScenes[index];
         const incoming = skillScenes[index + 1];
-        sceneTimeline.set(incoming, { autoAlpha: 1 }, index + .001);
-        sceneTimeline.to(incoming, { yPercent: 0, duration: .95 }, index);
-        sceneTimeline.to(incoming.querySelector('.skill-content'), { opacity: 1, x: 0, duration: .5 }, index + .2);
-        sceneTimeline.to(outgoing, { yPercent: -100, duration: .23 }, index + .72);
-        sceneTimeline.to(outgoing.querySelector('.skill-content'), { opacity: 0, duration: .23 }, index + .72);
-        sceneTimeline.set(outgoing, { autoAlpha: 0 }, index + .95);
+        sceneTimeline.set(incoming, { autoAlpha: 1 }, index + 0.001);
+        sceneTimeline.to(incoming, { yPercent: 0, duration: 0.95 }, index);
+        sceneTimeline.to(
+          incoming.querySelector(".skill-content"),
+          { opacity: 1, x: 0, duration: 0.5 },
+          index + 0.2,
+        );
+        sceneTimeline.to(
+          outgoing,
+          { yPercent: -100, duration: 0.23 },
+          index + 0.72,
+        );
+        sceneTimeline.to(
+          outgoing.querySelector(".skill-content"),
+          { opacity: 0, duration: 0.23 },
+          index + 0.72,
+        );
+        sceneTimeline.set(outgoing, { autoAlpha: 0 }, index + 0.95);
       }
-      sceneTimeline.to({}, { duration: .15 }, skillScenes.length - 1);
+      sceneTimeline.to({}, { duration: 0.15 }, skillScenes.length - 1);
     }
     activeIndex = -1;
     render();
   }
 
   function render() {
-    const position = Math.max(0, Math.min(scrollDistance, window.scrollY - stageTop())) / stepDistance;
-    const index = Math.min(skillScenes.length - 1, Math.floor(position + .5));
+    const position =
+      Math.max(0, Math.min(scrollDistance, window.scrollY - stageTop())) /
+      stepDistance;
+    const index = Math.min(skillScenes.length - 1, Math.floor(position + 0.5));
     if (sceneTimeline) sceneTimeline.time(position, false);
     else if (index !== activeIndex) {
       motion.set(skillScenes, { autoAlpha: 0, x: 0, yPercent: 0 });
       motion.set(skillScenes[index], { autoAlpha: 1 });
-      motion.set(skillScenes.map((scene) => scene.querySelector('.skill-content')), { opacity: 1, x: 0 });
+      motion.set(
+        skillScenes.map((scene) => scene.querySelector(".skill-content")),
+        { opacity: 1, x: 0 },
+      );
     }
     setActive(index);
   }
@@ -89,15 +117,17 @@ if (skills && skillScenes.length && window.gsap) {
   }
 
   function measure() {
-    stepDistance = Math.max(600, Math.round(window.innerHeight * .75));
-    scrollDistance = (skillScenes.length - .85) * stepDistance;
-    skills.style.setProperty('--skills-scroll-distance', `${scrollDistance}px`);
+    stepDistance = Math.max(600, Math.round(window.innerHeight * 0.75));
+    scrollDistance = (skillScenes.length - 0.85) * stepDistance;
+    skills.style.setProperty("--skills-scroll-distance", `${scrollDistance}px`);
     queueRender();
   }
 
   function hashIndex() {
-    if (location.hash === '#expertise') return 0;
-    return skillScenes.findIndex((scene) => scene.id === location.hash.slice(1));
+    if (location.hash === "#expertise") return 0;
+    return skillScenes.findIndex(
+      (scene) => scene.id === location.hash.slice(1),
+    );
   }
 
   function syncHash() {
@@ -107,43 +137,47 @@ if (skills && skillScenes.length && window.gsap) {
     queueRender();
   }
 
-  document.documentElement.style.scrollBehavior = 'auto';
+  document.documentElement.style.scrollBehavior = "auto";
   measure();
-  skills.classList.add('is-interactive');
+  skills.classList.add("is-interactive");
   buildTimeline();
-  window.addEventListener('scroll', queueRender, { passive: true });
-  window.addEventListener('resize', measure, { passive: true });
-  reducedMotion.addEventListener('change', buildTimeline);
-  skillLinks.forEach((link) => link.addEventListener('click', (event) => {
-    event.preventDefault();
-    history.pushState(null, '', link.hash);
-    syncHash();
-  }));
-  window.addEventListener('hashchange', syncHash);
-  window.addEventListener('popstate', syncHash);
+  window.addEventListener("scroll", queueRender, { passive: true });
+  window.addEventListener("resize", measure, { passive: true });
+  reducedMotion.addEventListener("change", buildTimeline);
+  skillLinks.forEach((link) =>
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      history.pushState(null, "", link.hash);
+      syncHash();
+    }),
+  );
+  window.addEventListener("hashchange", syncHash);
+  window.addEventListener("popstate", syncHash);
   if (hashIndex() >= 0) {
-    if (document.readyState === 'complete') syncHash();
-    else window.addEventListener('load', syncHash, { once: true });
+    if (document.readyState === "complete") syncHash();
+    else window.addEventListener("load", syncHash, { once: true });
   }
 }
 
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting);
-    if (!visible.length) return;
-    visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-    const activeId = visible[0].target.id;
-    for (const link of links) {
-      const active = link.dataset.target === activeId;
-      link.classList.toggle('is-active', active);
-      if (active) {
-        link.setAttribute('aria-current', 'location');
-        const from = Number(link.style.getPropertyValue('--from'));
-        const to = Number(link.style.getPropertyValue('--to'));
-        timeline.style.setProperty('--playhead-position', (from + to) / 2);
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting);
+      if (!visible.length) return;
+      visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      const activeId = visible[0].target.id;
+      for (const link of siteLinks) {
+        const active = link.dataset.target === activeId;
+        link.classList.toggle("is-active", active);
+        if (active) {
+          link.setAttribute("aria-current", "location");
+          const from = Number(link.style.getPropertyValue("--from"));
+          const to = Number(link.style.getPropertyValue("--to"));
+          timeline.style.setProperty("--playhead-position", (from + to) / 2);
+        } else link.removeAttribute("aria-current");
       }
-      else link.removeAttribute('aria-current');
-    }
-  }, { rootMargin: '-20% 0px -30% 0px', threshold: [0, .25, .5, .75] });
+    },
+    { rootMargin: "-20% 0px -30% 0px", threshold: [0, 0.25, 0.5, 0.75] },
+  );
   chapters.forEach((chapter) => observer.observe(chapter));
 }
