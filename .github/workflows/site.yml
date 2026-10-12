@@ -7,7 +7,7 @@ on:
       - 'content/**'
       - 'css/portfolio.css'
       - 'css/portfolio-tokens.css'
-      - 'js/portfolio.js'
+      - 'js/**'
       - 'assets/**'
       - 'vendor/**'
       - 'favicon.svg'

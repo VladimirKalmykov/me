@@ -5,6 +5,7 @@ on:
     paths:
       - scripts/build-portfolio-pdfs.py
       - scripts/verify-portfolio-pdfs.py
+      - assets/avatar-print.jpg
       - assets/fonts/Geologica-Regular.ttf
       - assets/fonts/Geologica-Semibold.ttf
       - .github/workflows/pdf.yml

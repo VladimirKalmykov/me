@@ -262,7 +262,7 @@ def build(profile, lang):
     copy = COPY[lang]
     selected = PROFILES[profile][lang]
     destination = OUT / f"{profile}-{lang}.pdf"
-    pdf = canvas.Canvas(str(destination), pagesize=A4, pageCompression=1)
+    pdf = canvas.Canvas(str(destination), pagesize=A4, pageCompression=1, invariant=1)
     pdf.setTitle(f"{copy['name']} - {selected['role']}")
     pdf.setAuthor(copy["name"])
 

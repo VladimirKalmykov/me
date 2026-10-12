@@ -11,6 +11,10 @@ const assetVersion = createHash('sha256')
   .update(await readFile(join(project, 'css/portfolio.css')))
   .digest('hex')
   .slice(0, 10);
+const scriptVersion = createHash('sha256')
+  .update(await readFile(join(project, 'js/portfolio.js')))
+  .digest('hex')
+  .slice(0, 10);
 const translations = {
   ru: JSON.parse(await readFile(join(project, 'content/ru.json'), 'utf8')),
   en: JSON.parse(await readFile(join(project, 'content/en.json'), 'utf8'))
@@ -55,6 +59,7 @@ function page(profile, lang) {
     lang,
     root,
     assetVersion,
+    scriptVersion,
     ogLocale: lang === 'ru' ? 'ru_RU' : 'en_US',
     title: copy.title,
     description: copy.description,

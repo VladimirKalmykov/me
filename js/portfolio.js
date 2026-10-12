@@ -8,7 +8,9 @@ const skillLinks = [...document.querySelectorAll("[data-skill-target]")];
 if (skills && skillScenes.length && window.gsap) {
   const motion = window.gsap;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const compact = window.matchMedia("(max-width: 680px)");
   const skillNav = document.querySelector(".skills-links");
+  const skillNavBar = document.querySelector(".skills-nav");
   let activeIndex = -1;
   let stepDistance = 0;
   let scrollDistance = 0;
@@ -26,8 +28,8 @@ if (skills && skillScenes.length && window.gsap) {
     skillScenes.forEach((scene, sceneIndex) => {
       const active = sceneIndex === index;
       scene.classList.toggle("is-active", active);
-      scene.inert = !active;
-      if (active) scene.removeAttribute("aria-hidden");
+      scene.inert = !compact.matches && !active;
+      if (compact.matches || active) scene.removeAttribute("aria-hidden");
       else scene.setAttribute("aria-hidden", "true");
     });
     for (const link of skillLinks) {
@@ -92,6 +94,15 @@ if (skills && skillScenes.length && window.gsap) {
   }
 
   function render() {
+    if (compact.matches) {
+      const marker = skillNavBar.getBoundingClientRect().height + 80;
+      let index = 0;
+      skillScenes.forEach((scene, sceneIndex) => {
+        if (scene.getBoundingClientRect().top <= marker) index = sceneIndex;
+      });
+      setActive(index);
+      return;
+    }
     const position =
       Math.max(0, Math.min(scrollDistance, window.scrollY - stageTop())) /
       stepDistance;
@@ -117,6 +128,10 @@ if (skills && skillScenes.length && window.gsap) {
   }
 
   function measure() {
+    if (compact.matches) {
+      queueRender();
+      return;
+    }
     stepDistance = Math.max(600, Math.round(window.innerHeight * 0.75));
     scrollDistance = (skillScenes.length - 0.85) * stepDistance;
     skills.style.setProperty("--skills-scroll-distance", `${scrollDistance}px`);
@@ -131,21 +146,52 @@ if (skills && skillScenes.length && window.gsap) {
   }
 
   function syncHash() {
+    if (compact.matches) {
+      queueRender();
+      return;
+    }
     const index = hashIndex();
     if (index < 0) return;
     window.scrollTo(0, stageTop() + index * stepDistance);
     queueRender();
   }
 
-  document.documentElement.style.scrollBehavior = "auto";
-  measure();
-  skills.classList.add("is-interactive");
-  buildTimeline();
+  function switchMode() {
+    activeIndex = -1;
+    if (compact.matches) {
+      sceneTimeline?.kill();
+      sceneTimeline = null;
+      skills.classList.remove("is-interactive");
+      skills.style.removeProperty("--skills-scroll-distance");
+      motion.set(skillScenes, { clearProps: "all" });
+      motion.set(
+        skillScenes.map((scene) => scene.querySelector(".skill-content")),
+        { clearProps: "all" },
+      );
+      skillScenes.forEach((scene) => {
+        scene.inert = false;
+        scene.removeAttribute("aria-hidden");
+      });
+      document.documentElement.style.removeProperty("scroll-behavior");
+      queueRender();
+    } else {
+      document.documentElement.style.scrollBehavior = "auto";
+      measure();
+      skills.classList.add("is-interactive");
+      buildTimeline();
+    }
+  }
+
+  switchMode();
   window.addEventListener("scroll", queueRender, { passive: true });
   window.addEventListener("resize", measure, { passive: true });
-  reducedMotion.addEventListener("change", buildTimeline);
+  compact.addEventListener("change", switchMode);
+  reducedMotion.addEventListener("change", () => {
+    if (!compact.matches) buildTimeline();
+  });
   skillLinks.forEach((link) =>
     link.addEventListener("click", (event) => {
+      if (compact.matches) return;
       event.preventDefault();
       history.pushState(null, "", link.hash);
       syncHash();
