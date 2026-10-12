@@ -12,6 +12,7 @@ on:
       - 'vendor/**'
       - 'favicon.svg'
       - 'scripts/build-site.mjs'
+      - 'scripts/build-social-cards.py'
       - 'scripts/verify-site.mjs'
       - 'scripts/build-portfolio-pdfs.py'
       - 'scripts/verify-portfolio-pdfs.py'

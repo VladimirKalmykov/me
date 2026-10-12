@@ -25,6 +25,16 @@ for (const route of routes) {
   if (!html.includes('href="https://www.linkedin.com/in/vladimirkalmykov/"')) throw new Error(`Missing LinkedIn: ${route}`);
   if (!html.includes('AST') || !html.includes('Data Matrix')) throw new Error(`Missing SmartPack case detail: ${route}`);
   if (!html.includes(lang === 'ru' ? '1 млрд' : '1 billion')) throw new Error(`Missing SmartPack outcome: ${route}`);
+  const canonical = `https://vladimirkalmykov.github.io/me/${route ? route + '/' : ''}`;
+  if (!html.includes(`<meta property="og:url" content="${canonical}">`)) throw new Error(`Wrong social URL: ${route}`);
+  if (!html.includes('<meta property="og:type" content="website">')) throw new Error(`Wrong social type: ${route}`);
+  if (!html.includes('<meta name="twitter:card" content="summary_large_image">')) throw new Error(`Missing large social card: ${route}`);
+  const image = html.match(/<meta property="og:image" content="([^"]+)">/)?.[1];
+  if (!image?.startsWith(`https://vladimirkalmykov.github.io/me/assets/og-${lang}.png?v=`)) throw new Error(`Wrong social image: ${route}`);
+  const png = await readFile(join(dist, 'assets', `og-${lang}.png`));
+  if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a' || png.readUInt32BE(16) !== 1200 || png.readUInt32BE(20) !== 630) {
+    throw new Error(`Invalid social card: ${lang}`);
+  }
 
   for (const [, address] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (external.test(address)) continue;

@@ -15,6 +15,11 @@ const scriptVersion = createHash('sha256')
   .update(await readFile(join(project, 'js/portfolio.js')))
   .digest('hex')
   .slice(0, 10);
+const siteBase = 'https://vladimirkalmykov.github.io/me/';
+const socialVersions = Object.fromEntries(await Promise.all(['ru', 'en'].map(async (lang) => [
+  lang,
+  createHash('sha256').update(await readFile(join(project, `assets/og-${lang}.png`))).digest('hex').slice(0, 10)
+])));
 const translations = {
   ru: JSON.parse(await readFile(join(project, 'content/ru.json'), 'utf8')),
   en: JSON.parse(await readFile(join(project, 'content/en.json'), 'utf8'))
@@ -61,6 +66,10 @@ function page(profile, lang) {
     assetVersion,
     scriptVersion,
     ogLocale: lang === 'ru' ? 'ru_RU' : 'en_US',
+    siteName: lang === 'ru' ? 'Владимир Калмыков' : 'Vladimir Kalmykov',
+    pageUrl: siteBase + directory + (directory ? '/' : ''),
+    socialImage: `${siteBase}assets/og-${lang}.png?v=${socialVersions[lang]}`,
+    socialImageAlt: lang === 'ru' ? 'Владимир Калмыков — инженерное портфолио' : 'Vladimir Kalmykov — engineering portfolio',
     title: copy.title,
     description: copy.description,
     profileRole: copy.role,
@@ -123,6 +132,8 @@ for (const [target, source] of [
   ['favicon.svg', 'favicon.svg'],
   ['assets/avatar.webp', 'assets/avatar.webp'],
   ['assets/avatar-square.webp', 'assets/avatar-square.webp'],
+  ['assets/og-ru.png', 'assets/og-ru.png'],
+  ['assets/og-en.png', 'assets/og-en.png'],
   ['assets/fonts/Geologica-variable.ttf', 'assets/fonts/Geologica-variable.ttf'],
   ['assets/fonts/Geologica-OFL.txt', 'assets/fonts/Geologica-OFL.txt']
 ]) await stage(target, source);
