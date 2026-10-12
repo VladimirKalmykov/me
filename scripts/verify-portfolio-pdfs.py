@@ -22,6 +22,7 @@ for profile in ("frontend", "fullstack"):
         assert all(abs(float(page.mediabox.width) - 595.276) < 1 for page in reader.pages), path
         assert all(abs(float(page.mediabox.height) - 841.89) < 1 for page in reader.pages), path
         first, second = (page.extract_text() for page in reader.pages)
+        assert len(reader.pages[0].images) == 1, f"Missing first-page portrait: {path}"
         assert len(first) > 1000 and len(second) > 1000, path
         assert "Storybook" not in first + second, path
         if lang == "ru":

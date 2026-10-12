@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const project = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(project, 'dist');
-const routes = ['', 'en', 'frontend', 'en/frontend', 'fullstack', 'en/fullstack'];
+const routes = ['', 'en'];
 const external = /^(?:https?:|mailto:|tel:|data:)/i;
 
 async function exists(path) {

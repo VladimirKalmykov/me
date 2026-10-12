@@ -1,4 +1,5 @@
 import { readFile, writeFile, copyFile, mkdir, rm } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { resolve, join, dirname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { profiles } from '../content/profiles.mjs';
@@ -6,6 +7,10 @@ import { profiles } from '../content/profiles.mjs';
 const project = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const output = resolve(project, 'dist');
 const template = await readFile(join(project, 'templates/portfolio.html'), 'utf8');
+const assetVersion = createHash('sha256')
+  .update(await readFile(join(project, 'css/portfolio.css')))
+  .digest('hex')
+  .slice(0, 10);
 const translations = {
   ru: JSON.parse(await readFile(join(project, 'content/ru.json'), 'utf8')),
   en: JSON.parse(await readFile(join(project, 'content/en.json'), 'utf8'))
@@ -29,16 +34,6 @@ function href(root, profile, lang) {
   return root + (destination ? destination + '/' : '');
 }
 
-function navigation(root, profile, lang) {
-  const labels = lang === 'ru'
-    ? { general: 'Общее портфолио', frontend: 'Frontend', fullstack: 'Fullstack' }
-    : { general: 'Portfolio', frontend: 'Frontend', fullstack: 'Fullstack' };
-  return Object.keys(labels).map((option) => {
-    const current = option === profile ? ' aria-current="page"' : '';
-    return `<a href="${href(root, option, lang)}"${current}>${escapeHtml(labels[option])}</a>`;
-  }).join('');
-}
-
 function pdfLinks(root, profile, lang) {
   const roles = profile === 'general' ? ['frontend', 'fullstack'] : [profile];
   return roles.map((role) => {
@@ -59,6 +54,7 @@ function page(profile, lang) {
     ...dictionary,
     lang,
     root,
+    assetVersion,
     ogLocale: lang === 'ru' ? 'ru_RU' : 'en_US',
     title: copy.title,
     description: copy.description,
@@ -72,11 +68,9 @@ function page(profile, lang) {
     languageLabel: lang === 'ru' ? 'Switch to English' : 'Switch to Russian',
     otherLang,
     otherLangUpper: otherLang.toUpperCase(),
-    profileNavLabel: lang === 'ru' ? 'Версии портфолио' : 'Portfolio versions',
-    profileNav: navigation(root, profile, lang),
     pdfLinks: pdfLinks(root, profile, lang)
   };
-  const raw = new Set(['profileNav', 'pdfLinks']);
+  const raw = new Set(['pdfLinks']);
   const rendered = template.replace(/\{\{([a-zA-Z0-9]+)\}\}/g, (_, key) => {
     if (!(key in values)) throw new Error(`Missing template variable: ${key} (${lang}/${profile})`);
     return raw.has(key) ? values[key] : escapeHtml(values[key]);
@@ -102,7 +96,7 @@ if (!output.startsWith(project + sep)) throw new Error('Refusing to clear a dire
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
-for (const profile of Object.keys(profiles)) {
+for (const profile of ['general']) {
   for (const lang of ['ru', 'en']) {
     const { directory, rendered } = page(profile, lang);
     const relative = join(directory, 'index.html');
@@ -117,10 +111,13 @@ for (const [target, source] of [
   ['css/portfolio.css', 'css/portfolio.css'],
   ['css/portfolio-tokens.css', 'css/portfolio-tokens.css'],
   ['js/portfolio.js', 'js/portfolio.js'],
+  ['js/hero-background.js', 'js/hero-background.js'],
+  ['vendor/threejs.min.js', 'vendor/threejs.min.js'],
   ['vendor/gsap-3.15.0.min.js', 'vendor/gsap-3.15.0.min.js'],
   ['vendor/README.md', 'vendor/README.md'],
   ['favicon.svg', 'favicon.svg'],
   ['assets/avatar.webp', 'assets/avatar.webp'],
+  ['assets/avatar-square.webp', 'assets/avatar-square.webp'],
   ['assets/fonts/Geologica-variable.ttf', 'assets/fonts/Geologica-variable.ttf'],
   ['assets/fonts/Geologica-OFL.txt', 'assets/fonts/Geologica-OFL.txt']
 ]) await stage(target, source);

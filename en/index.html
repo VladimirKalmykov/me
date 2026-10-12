@@ -17,21 +17,24 @@
   <link rel="alternate" hreflang="en" href="../en/">
   <link rel="preload" href="../assets/fonts/Geologica-variable.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="../css/portfolio-tokens.css">
-  <link rel="stylesheet" href="../css/portfolio.css">
+  <link rel="stylesheet" href="../css/portfolio.css?v=64c157dce5">
+  <script src="../vendor/threejs.min.js" defer></script>
   <script src="../vendor/gsap-3.15.0.min.js" defer></script>
+  <script src="../js/hero-background.js" defer></script>
   <script src="../js/portfolio.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#expertise">Skip to expertise</a>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="Vladimir Kalmykov, back to top">VK<span class="brand-cursor" aria-hidden="true"></span></a>
-    <span class="topbar-context">Portfolio / engineering path</span>
+    <span class="topbar-context">Portfolio / Resume</span>
     <a class="topbar-contact" href="https://t.me/xperier">Contact <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 16 16 4M7 4h9v9"/></svg></a>
     <a class="topbar-language" href="../" lang="ru" hreflang="ru" aria-label="Switch to Russian">RU</a>
   </header>
 
   <main>
     <section class="hero" id="top" aria-labelledby="hero-title">
+      <div id="canvas-container" aria-hidden="true"></div>
       <div class="hero-main">
         <div class="hero-copy">
           <p class="hero-role">Senior / Lead Fullstack Developer · Frontend architecture</p>
@@ -48,7 +51,10 @@
           </div>
         </div>
         <figure class="portrait">
-          <img src="../assets/avatar.webp" alt="Portrait of Vladimir Kalmykov" width="800" height="1066" fetchpriority="high">
+          <picture>
+            <source media="(max-width: 440px)" srcset="../assets/avatar-square.webp" type="image/webp">
+            <img src="../assets/avatar.webp" alt="Portrait of Vladimir Kalmykov" width="800" height="1067" fetchpriority="high">
+          </picture>
           <figcaption>Vladimir / portrait</figcaption>
         </figure>
       </div>
@@ -58,8 +64,6 @@
         <a href="#expertise">Stack and expertise <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v15m-6-6 6 6 6-6"/></svg></a>
       </div>
     </section>
-
-    <nav class="profile-nav" aria-label="Portfolio versions"><a href="../en/" aria-current="page">Portfolio</a><a href="../en/frontend/">Frontend</a><a href="../en/fullstack/">Fullstack</a></nav>
 
     <section class="skills" id="expertise" aria-labelledby="expertise-title">
       <div class="skills-layout">
@@ -264,4 +268,3 @@
   <footer class="footer"><span>Vladimir Kalmykov</span><span>Engineering portfolio · 2026</span><a href="#top">Back to top</a></footer>
 </body>
 </html>
-

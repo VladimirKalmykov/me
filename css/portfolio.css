@@ -51,11 +51,16 @@ svg {
 }
 #canvas-container {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--ink);
+  pointer-events: none;
+}
+#canvas-container canvas {
+  display: block;
   width: 100%;
   height: 100%;
-  z-index: -1;
 }
 .skip {
   position: fixed;
@@ -133,11 +138,18 @@ svg {
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   min-height: 100svh;
   padding: 8.5rem var(--page-gutter) 2.2rem;
   overflow: hidden;
+}
+.hero-main,
+.hero-bottom {
+  position: relative;
+  z-index: 1;
 }
 .hero-main {
   flex: 1;
@@ -326,34 +338,6 @@ svg {
 }
 .hero-bottom svg {
   color: var(--signal);
-}
-
-.profile-nav {
-  display: flex;
-  gap: clamp(1.5rem, 3vw, 3.5rem);
-  align-items: center;
-  min-height: 4.2rem;
-  padding: 0.5rem var(--page-gutter);
-  border-top: 1px solid var(--line-quiet);
-  border-bottom: 1px solid var(--line-quiet);
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: thin;
-}
-.profile-nav a {
-  padding: 0.45rem 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 620;
-  text-decoration: none;
-}
-.profile-nav a[aria-current="page"] {
-  color: var(--signal);
-  border-bottom: 1px solid var(--signal);
-}
-.profile-nav a:hover,
-.profile-nav a:focus-visible {
-  color: var(--text);
 }
 
 .skills {
@@ -1388,6 +1372,109 @@ svg {
     min-width: auto;
     padding: 0.5rem;
     font-size: 0.75rem;
+  }
+}
+@media (min-width: 441px) and (max-width: 680px) {
+  .hero {
+    padding-top: 6.5rem;
+  }
+  .hero-main {
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 0 clamp(1.2rem, 4vw, 2rem);
+    align-content: start;
+    align-items: center;
+  }
+  .hero-copy {
+    display: contents;
+  }
+  .portrait {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 130px;
+    height: 130px;
+    margin: 0;
+    justify-self: start;
+    align-self: center;
+  }
+  .portrait::before,
+  .portrait::after,
+  .portrait figcaption {
+    display: none;
+  }
+  .portrait picture,
+  .portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .portrait img {
+    object-fit: cover;
+    object-position: 50% 32%;
+  }
+  .hero h1 {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: clamp(2.2rem, 7vw, 3.7rem);
+  }
+  .hero-role {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    align-self: start;
+  }
+  .hero-thesis,
+  .hero-links,
+  .hero-pdfs {
+    grid-column: 1 / -1;
+  }
+  .hero-thesis {
+    margin-top: 2.3rem;
+  }
+}
+@media (max-width: 440px) {
+  .hero {
+    padding: 4.3rem 0 1.4rem;
+  }
+  .hero-main {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .hero-copy {
+    padding: 1.6rem var(--page-gutter) 0;
+  }
+  .hero-role {
+    margin-bottom: 1.3rem;
+  }
+  .portrait {
+    order: -1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    align-self: stretch;
+  }
+  .portrait::before,
+  .portrait::after,
+  .portrait figcaption {
+    display: none;
+  }
+  .portrait picture,
+  .portrait img {
+    display: block;
+    width: 100%;
+  }
+  .portrait img {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hero-bottom {
+    padding-right: var(--page-gutter);
+    padding-left: var(--page-gutter);
   }
 }
 @media (prefers-reduced-motion: reduce) {

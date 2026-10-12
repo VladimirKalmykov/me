@@ -6,6 +6,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
+from reportlab.lib.utils import ImageReader
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +24,7 @@ RULE = colors.HexColor("#cbd7dc")
 FONT_NAME = "Geologica"
 FONT_SEMI = "GeologicaSemi"
 PORTFOLIO = "https://vladimirkalmykov.github.io/me/"
+PORTRAIT = ImageReader(str(ROOT / "assets" / "avatar-print.jpg"))
 
 
 COPY = {
@@ -265,6 +267,14 @@ def build(profile, lang):
     pdf.setAuthor(copy["name"])
 
     page = Page(pdf, lang, 1, selected["role"])
+    portrait_width, portrait_height = 75, 100
+    pdf.drawImage(
+        PORTRAIT,
+        PAGE_W - MARGIN - portrait_width,
+        PAGE_H - MARGIN - portrait_height,
+        width=portrait_width,
+        height=portrait_height,
+    )
     page.text(copy["name"], 24, INK, leading=32, font=FONT_SEMI)
     page.y -= 1
     page.text(selected["role"], 11.5, ACCENT, leading=17, font=FONT_SEMI)
