@@ -207,6 +207,10 @@ svg {
   vertical-align: -0.12em;
   color: var(--signal);
 }
+.hero-links .linkedin-icon {
+  vertical-align: -0.17em;
+  stroke-width: 1.7;
+}
 .hero-pdfs {
   display: flex;
   flex-wrap: wrap;
@@ -898,37 +902,32 @@ svg {
   padding-left: 0.75rem;
   border-left: 2px solid var(--signal);
 }
-.compression-graphic {
+.growth-graphic {
   display: grid;
-  gap: 1.4rem;
-  align-content: center;
-}
-.comparison {
-  display: grid;
-  grid-template-columns: 9.5rem 1fr 5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
   align-items: center;
-  gap: 1rem;
-  color: var(--muted);
-  font-size: 0.78rem;
 }
-.comparison-rail {
-  height: 7px;
-  background: var(--line-quiet);
+.growth-graphic > div {
+  min-width: 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
 }
-.comparison-rail i {
+.growth-graphic strong {
   display: block;
-  width: var(--size);
-  height: 100%;
-  background: var(--line);
+  color: var(--signal);
+  font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
 }
-.comparison:last-child .comparison-rail i {
-  background: var(--signal);
-}
-.comparison b {
-  color: var(--text);
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-align: right;
+.growth-graphic span {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 .constraint-graphic {
   display: flex;
@@ -1068,6 +1067,10 @@ svg {
   .chapter-case-notes {
     grid-template-columns: 1fr;
     gap: 1.4rem;
+  }
+  .growth-graphic {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   .topbar {
     height: 4.3rem;
@@ -1349,18 +1352,6 @@ svg {
     border-top: 2px solid var(--signal);
     font-size: 0.75rem;
     white-space: normal;
-  }
-  .comparison {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.2rem 0.7rem;
-  }
-  .comparison-rail {
-    grid-column: 1 / -1;
-    grid-row: 2;
-  }
-  .comparison b {
-    grid-column: 2;
-    grid-row: 1;
   }
   .constraint-graphic {
     gap: 0.3rem;

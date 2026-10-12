@@ -22,7 +22,9 @@ for (const route of routes) {
   if ((html.match(/data-skill-scene/g) || []).length !== 6) throw new Error(`Missing expertise sections: ${route}`);
   if ((html.match(/data-chapter=/g) || []).length !== 5) throw new Error(`Missing chronology chapters: ${route}`);
   if (!html.includes('href="https://t.me/xperier"') || !html.includes('mailto:vladimirkalmykov16@yandex.ru')) throw new Error(`Missing contact: ${route}`);
+  if (!html.includes('href="https://www.linkedin.com/in/vladimirkalmykov/"')) throw new Error(`Missing LinkedIn: ${route}`);
   if (!html.includes('AST') || !html.includes('Data Matrix')) throw new Error(`Missing SmartPack case detail: ${route}`);
+  if (!html.includes(lang === 'ru' ? '1 млрд' : '1 billion')) throw new Error(`Missing SmartPack outcome: ${route}`);
 
   for (const [, address] of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
     if (external.test(address)) continue;

@@ -34,6 +34,7 @@ COPY = {
             ("Telegram", "t.me/xperier", "https://t.me/xperier"),
             ("Почта", "vladimirkalmykov16@yandex.ru", "mailto:vladimirkalmykov16@yandex.ru"),
             ("GitHub", "github.com/VladimirKalmykov", "https://github.com/VladimirKalmykov"),
+            ("LinkedIn", "linkedin.com/in/vladimirkalmykov", "https://www.linkedin.com/in/vladimirkalmykov/"),
             ("Портфолио", "vladimirkalmykov.github.io/me", PORTFOLIO),
         ],
         "profile": "Профиль",
@@ -56,7 +57,7 @@ COPY = {
             "prettifai": "Проектирую редактор визуальных сценариев и интерфейсы сложных AI-процессов; в коде есть граф исполнения, кэширование узлов и выборочный перезапуск. Также реализованы фоновые задачи, интеграции провайдеров и платежные сценарии.",
             "yougile": "Инициировал модернизацию платформы расширений: React, TypeScript, Rollup, SDK, поэтапный CI. Работал над сложными Workflow и Timetracker. За время моей работы экосистема выросла с 3 до 23 расширений благодаря усилиям команды.",
             "kaspersky": "Разработка и диагностика интерфейса Security Center в большой enterprise-системе с жёсткими ограничениями безопасности и доступа к инструментам.",
-            "smartpack": "Собрал команду из шести разработчиков. Создал UI kit, сайт с практическими гайдами и примерами, SDK и выпуск внутренних пакетов. AST-инструмент помог локализовать три приложения примерно за четыре дня вместо оценённого месяца ручной работы. Разработал Android-приложение для ТСД с React Native и нативным Java-модулем.",
+            "smartpack": "Пришёл без готовой frontend-платформы: самостоятельно спроектировал архитектуру, UI kit и стандарты. Лично нанял шесть разработчиков; команда выпустила три веб-приложения и Android-клиент для ТСД. Общие компоненты, SDK и документация помогли расти без существенного техдолга. Примерно через год был продан 1 млрд кодов маркировки.",
             "infotech": "Выстроил дизайн-систему, UI kit, SDK и архитектурные стандарты как общую основу для трёх продуктовых команд.",
         },
     },
@@ -66,6 +67,7 @@ COPY = {
             ("Telegram", "t.me/xperier", "https://t.me/xperier"),
             ("Email", "vladimirkalmykov16@yandex.ru", "mailto:vladimirkalmykov16@yandex.ru"),
             ("GitHub", "github.com/VladimirKalmykov", "https://github.com/VladimirKalmykov"),
+            ("LinkedIn", "linkedin.com/in/vladimirkalmykov", "https://www.linkedin.com/in/vladimirkalmykov/"),
             ("Portfolio", "vladimirkalmykov.github.io/me", PORTFOLIO),
         ],
         "profile": "Profile",
@@ -88,7 +90,7 @@ COPY = {
             "prettifai": "I design a visual workflow editor and interfaces for complex AI processes. The code includes an execution graph, node caching, and selective reruns. Background jobs, provider integrations, and payment flows are also implemented.",
             "yougile": "Initiated modernization of the extensions platform with React, TypeScript, Rollup, an SDK, and incremental CI. Contributed to complex Workflow and Timetracker extensions. During my tenure the ecosystem grew from 3 to 23 extensions through the team's work.",
             "kaspersky": "Developed and diagnosed Security Center frontend behavior in a large enterprise system with strict security and tooling constraints.",
-            "smartpack": "Built and led a six-person frontend team. Created a UI kit, a custom guide site with practical examples, SDK packages, and an internal release process. An AST tool helped localize three applications in about four days against an estimated month of manual work. Built a React Native terminal app with a native Java module.",
+            "smartpack": "Joined before a frontend platform existed; independently designed the architecture, UI Kit and standards. Personally hired six developers. The team shipped three web apps and an Android terminal app. Shared components, an SDK and documentation supported growth without substantial technical debt. Roughly a year later, the product had sold one billion marking codes.",
             "infotech": "Created a design system, UI kit, SDK, and architecture standards used as a shared foundation by three product teams.",
         },
     },
@@ -102,8 +104,8 @@ PROFILES = {
             "summary": "16 лет коммерческой разработки. Создаю frontend-архитектуру, дизайн-системы и инструменты, с которыми командам проще выпускать и развивать продукты. Работал как инженер, архитектор и руководитель.",
             "results": [
                 ("Платформа расширений YouGile", "Инициировал переход к React, TypeScript, SDK и поэтапной сборке. Модернизация заняла около двух недель; следующее расширение - около недели."),
-                ("Команда и Developer Experience SmartPack", "Собрал команду из шести разработчиков; создал UI kit, сайт практических гайдов, SDK и процесс выпуска внутренних пакетов."),
-                ("Автоматизация локализации", "AST-инструмент помог локализовать три приложения примерно за четыре дня вместо оценённого месяца ручной работы."),
+                ("SmartPack: платформа и команда с нуля", "Сам создал frontend-архитектуру и первый UI kit, затем нанял шесть разработчиков. Команда выпустила три веб-приложения и Android-клиент; примерно через год продан 1 млрд кодов маркировки."),
+                ("Общая система Infotech", "Создал дизайн-систему, UI kit, SDK и архитектурные стандарты как основу для трёх продуктовых команд."),
             ],
             "tech": [
                 "Frontend: TypeScript, JavaScript, React, Next.js, React Native, CSS, PostCSS.",
@@ -116,8 +118,8 @@ PROFILES = {
             "summary": "16 years in commercial software development. I build frontend architecture, design systems, and developer tools that help teams ship and evolve products. My work spans hands-on engineering, architecture, and leadership.",
             "results": [
                 ("YouGile extensions platform", "Initiated the move to React, TypeScript, an SDK, and incremental builds. The modernization took about two weeks; the next extension took about one week."),
-                ("SmartPack developer experience", "Built a six-person frontend team and established a UI kit, a practical guide site, SDK packages, and an internal release process."),
-                ("Localization automation", "An AST-based tool helped localize three applications in about four days against an estimated month of manual work."),
+                ("SmartPack: platform and team from zero", "Independently built the frontend architecture and first UI Kit, then hired six developers. The team shipped three web apps and an Android client; roughly a year later, one billion marking codes had been sold."),
+                ("A shared system at Infotech", "Built a design system, UI Kit, SDK and architecture standards used by three product teams."),
             ],
             "tech": [
                 "Frontend: TypeScript, JavaScript, React, Next.js, React Native, CSS, PostCSS.",
@@ -132,7 +134,7 @@ PROFILES = {
             "summary": "16 лет коммерческой разработки. Самостоятельно соединяю интерфейс, backend, фоновые процессы и продуктовую логику. Архитектурные решения проверяю на реальном сценарии пользователя и поддерживаемости системы.",
             "results": [
                 ("Prettifai: продукт целиком", "В экспериментальном продукте разрабатываю редактор сценариев, граф исполнения, фоновые задачи, кэширование узлов, платежные потоки и интеграции AI-провайдеров."),
-                ("Android-приложение для ТСД", "В SmartPack за примерно три недели собрал React Native приложение с Java-мостом для конкретного устройства и сканированием Data Matrix."),
+                ("SmartPack: быстрый запуск продукта", "С нуля создал frontend-платформу, нанял шесть разработчиков. Команда выпустила три веб-приложения и Android для ТСД; примерно через год продан 1 млрд кодов маркировки."),
                 ("YouGile: расширяемая платформа", "Инициировал современную сборку и SDK для расширений; участвовал в сложных Workflow и Timetracker."),
             ],
             "tech": [
@@ -146,7 +148,7 @@ PROFILES = {
             "summary": "16 years in commercial software development. I connect product UI, backend services, background work, and business logic. I test architecture decisions against the actual user journey and long-term maintainability.",
             "results": [
                 ("Prettifai: end-to-end product", "Building a workflow editor, execution graph, background jobs, node caching, payment flows, and AI provider integrations for an experimental product."),
-                ("Android terminal app", "At SmartPack I built a React Native app in about three weeks, with a Java bridge for a specific device and Data Matrix scanning."),
+                ("SmartPack: rapid product launch", "Built the frontend platform from zero and hired six developers. The team shipped three web apps and an Android terminal app; roughly a year later, one billion marking codes had been sold."),
                 ("YouGile: extensible platform", "Initiated a modern build pipeline and SDK for extensions, and contributed to complex Workflow and Timetracker features."),
             ],
             "tech": [
@@ -246,7 +248,7 @@ def contact_row(page):
     x = MARGIN
     page.pdf.setFont(FONT_NAME, 9)
     for index, (label, value, url) in enumerate(page.copy["contact"]):
-        if index == 2:
+        if index in (2, 4):
             page.y -= 16
             x = MARGIN
         line = f"{label}: {value}"

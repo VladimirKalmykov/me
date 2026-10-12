@@ -205,25 +205,39 @@ if (skills && skillScenes.length && window.gsap) {
   }
 }
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting);
-      if (!visible.length) return;
-      visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-      const activeId = visible[0].target.id;
-      for (const link of siteLinks) {
-        const active = link.dataset.target === activeId;
-        link.classList.toggle("is-active", active);
-        if (active) {
-          link.setAttribute("aria-current", "location");
-          const from = Number(link.style.getPropertyValue("--from"));
-          const to = Number(link.style.getPropertyValue("--to"));
-          timeline.style.setProperty("--playhead-position", (from + to) / 2);
-        } else link.removeAttribute("aria-current");
-      }
-    },
-    { rootMargin: "-20% 0px -30% 0px", threshold: [0, 0.25, 0.5, 0.75] },
-  );
-  chapters.forEach((chapter) => observer.observe(chapter));
+if (chapters.length && timeline) {
+  let lastChapter = null;
+  const timelineNav = document.querySelector(".timeline-nav");
+  function updateTimeline() {
+    const bounds = timeline.getBoundingClientRect();
+    if (bounds.top > window.innerHeight || bounds.bottom < 0) return;
+    const marker = window.innerHeight * 0.45;
+    let activeId = chapters[0].id;
+    for (const chapter of chapters) {
+      if (chapter.getBoundingClientRect().top <= marker) activeId = chapter.id;
+    }
+    if (activeId === lastChapter) return;
+    lastChapter = activeId;
+    for (const link of siteLinks) {
+      const active = link.dataset.target === activeId;
+      link.classList.toggle("is-active", active);
+      if (active) {
+        link.setAttribute("aria-current", "location");
+        const from = Number(link.style.getPropertyValue("--from"));
+        const to = Number(link.style.getPropertyValue("--to"));
+        timeline.style.setProperty("--playhead-position", (from + to) / 2);
+        if (window.matchMedia("(max-width: 680px)").matches && timelineNav) {
+          const navRect = timelineNav.getBoundingClientRect();
+          const linkRect = link.getBoundingClientRect();
+          timelineNav.scrollTo({
+            left: timelineNav.scrollLeft + linkRect.left - navRect.left - (navRect.width - linkRect.width) / 2,
+            behavior: "auto",
+          });
+        }
+      } else link.removeAttribute("aria-current");
+    }
+  }
+  window.addEventListener("scroll", updateTimeline, { passive: true });
+  window.addEventListener("resize", updateTimeline, { passive: true });
+  updateTimeline();
 }

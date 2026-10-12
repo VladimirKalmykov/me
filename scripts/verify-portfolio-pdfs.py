@@ -11,6 +11,7 @@ LINKS = {
     "https://t.me/xperier",
     "mailto:vladimirkalmykov16@yandex.ru",
     "https://github.com/VladimirKalmykov",
+    "https://www.linkedin.com/in/vladimirkalmykov/",
     "https://vladimirkalmykov.github.io/me/",
 }
 
@@ -28,11 +29,11 @@ for profile in ("frontend", "fullstack"):
         if lang == "ru":
             assert first.index("Владимир Калмыков") < first.index("Профиль") < first.index("Избранные результаты") < first.index("Опыт"), path
             assert second.index("Касперского") < second.index("SmartPack") < second.index("Infotech") < second.index("Образование"), path
-            assert "сайт" in second and "гайдами" in second, path
+            assert "архитектуру" in second and "1 млрд кодов" in second, path
         else:
             assert first.index("Vladimir Kalmykov") < first.index("Profile") < first.index("Selected results") < first.index("Experience"), path
             assert second.index("Kaspersky") < second.index("SmartPack") < second.index("Infotech") < second.index("Education"), path
-            assert "custom guide site" in second, path
+            assert "architecture" in second and "one billion marking codes" in second, path
         found = {
             annotation.get_object().get("/A", {}).get("/URI")
             for page in reader.pages
